@@ -4,10 +4,12 @@ import {
   StyleSheet,
   Text,
   View,
+  SafeAreaView,
   TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
+  ScrollView,
 } from "react-native";
 
 class CalculatorScreen extends React.Component {
@@ -18,10 +20,11 @@ class CalculatorScreen extends React.Component {
           Keyboard.dismiss();
         }}
       >
-        <View style={styles.Container}>
+        <SafeAreaView style={styles.Container}>
           <View style={styles.Header}>
             <Text style={styles.label}>HYDROSEED CALCULATOR</Text>
           </View>
+
           {/* Container for Mulch Calculation Inputs start here*/}
           <View style={styles.MulchInputsContainer}>
             <View style={styles.InnerMulchInputsContainer}>
@@ -146,8 +149,35 @@ class CalculatorScreen extends React.Component {
             </View>
           </View>
 
+          <View style={styles.Header2}>
+            <Text style={{ color: "black", fontWeight: "bold", padding: 5 }}>
+              Calculation Results
+            </Text>
+          </View>
+
+          <View style={styles.ResultsContainer}>
+            <Text style={styles.label}>Total Mulch Needed for Project</Text>
+            <View style={{ flexDirection: "row" }}>
+              <TextInput editable={false} style={styles.TextInputContainer2} />
+              <TextInput editable={false} style={styles.TextInputContainer2} />
+            </View>
+            <Text style={styles.label}>
+              Total Tank Loads Needed for Project
+            </Text>
+            <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+              <TextInput editable={false} style={styles.TextInputContainer2} />
+              <TextInput editable={false} style={styles.TextInputContainer2} />
+              <TextInput editable={false} style={styles.TextInputContainer3} />
+            </View>
+            <Text style={styles.label}>Total Compost Needed for Project</Text>
+            <View style={{ flexDirection: "row" }}>
+              <TextInput editable={false} style={styles.TextInputContainer2} />
+              <TextInput editable={false} style={styles.TextInputContainer2} />
+            </View>
+          </View>
+
           <StatusBar></StatusBar>
-        </View>
+        </SafeAreaView>
       </TouchableWithoutFeedback>
     );
   }
@@ -165,34 +195,49 @@ const styles = StyleSheet.create({
     height: "15%",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#D5F5E3",
+    backgroundColor: "#046b99",
+    borderBottomWidth: 4,
+    borderBottomColor: "#fdb81e",
+  },
+  Header2: {
+    width: "100%",
+    height: "4%",
+    alignItems: "center",
+    justifyContent: "center",
+    //backgroundColor: "#D5F5E3",
   },
   label: {
-    color: "black",
+    color: "white",
     fontWeight: "bold",
-    padding: 5,
+    padding: 3,
   },
   // Styling for entire Mulch User Inputs Section
   MulchInputsContainer: {
     width: "60%",
-    height: "65%",
+    height: "60%",
     padding: 5,
+    paddingBottom: 0,
   },
   InnerMulchInputsContainer: {
     flex: 1,
-    backgroundColor: "#D5F5E3",
+    backgroundColor: "#046b99",
     alignItems: "center",
+    borderColor: "#fdb81e",
+    borderWidth: 2,
   },
   // Styling for entire Compost User Inputs Section
   CompostInputsContainer: {
     width: "40%",
-    height: "65%",
+    height: "60%",
     padding: 5,
+    paddingBottom: 0,
   },
   InnerCompostInputsContainer: {
     flex: 1,
-    backgroundColor: "#D5F5E3",
+    backgroundColor: "#046b99",
     alignItems: "center",
+    borderColor: "#fdb81e",
+    borderWidth: 2,
   },
   // Styling for each label plus text input
   Forms: {
@@ -204,7 +249,26 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     padding: 10,
-    width: 150,
+    width: 130,
+    height: 35,
+    backgroundColor: "white",
+  },
+  TextInputContainer2: {
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 7,
+    width: "50%",
+    height: 33,
+    backgroundColor: "white",
+  },
+  TextInputContainer3: {
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 7,
+    width: "100%",
+    height: 33,
     backgroundColor: "white",
   },
   // Styling for Buttons
@@ -234,6 +298,25 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
   },
+
+  // Styling for Calculation Results Container
+  ResultsContainer: {
+    width: "100%",
+    height: "38%",
+    margin: 4,
+    padding: 2,
+    flex: 1,
+    alignItems: "stretch",
+    borderWidth: 2,
+    borderRadius: 20,
+    borderColor: "#477699",
+    backgroundColor: "#046b99",
+  },
+  /*InnerResultsContainer: {
+    flex: 1,
+    backgroundColor: "#D5F5E3",
+    alignItems: "center",
+  },*/
 });
 
 export default CalculatorScreen;

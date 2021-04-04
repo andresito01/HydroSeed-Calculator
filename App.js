@@ -16,7 +16,7 @@ export default function App() {
       <Tabs.Navigator
         initialRouteName="Calculator"
         activeColor="#f0edf6"
-        barStyle={{ backgroundColor: "green" }}
+        barStyle={{ backgroundColor: "#046b99" }}
       >
         <Tabs.Screen
           name="Calculator"
@@ -24,7 +24,7 @@ export default function App() {
           options={{
             tabBarLabel: "Calculator",
             tabBarIcon: ({ color }) => (
-              <Icon name="calculator" color={color} size={26} />
+              <Icon name="calculator" color={color} size={20} />
             ),
           }}
         />
