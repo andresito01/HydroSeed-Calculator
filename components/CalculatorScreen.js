@@ -10,109 +10,195 @@ import {
   Keyboard,
 } from "react-native";
 
-function CalculatorScreen() {
-  return (
-    <TouchableWithoutFeedback
-      onPress={() => {
-        Keyboard.dismiss();
-      }}
-    >
-      <View style={styles.container}>
-        <Text style={styles.Header}>HYDROSEED CALCULATOR</Text>
-        {/* Container for Inputs start here*/}
-        <View style={styles.InputsContainer}>
-          {/* Input Total Project Size */}
-          <View style={styles.row}>
-            <Text style={styles.label}>Total Size of Project =</Text>
-            <TextInput
-              keyboardAppearance="dark"
-              keyboardType="numeric"
-              placeholder="sq. ft."
-              style={styles.TextInputContainer}
-            />
+class CalculatorScreen extends React.Component {
+  render() {
+    return (
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}
+      >
+        <View style={styles.Container}>
+          <View style={styles.Header}>
+            <Text style={styles.label}>HYDROSEED CALCULATOR</Text>
           </View>
-          {/* Input Target Mulch Application Rate */}
-          <View style={styles.row}>
-            <Text style={styles.label}>Target Mulch Application Rate =</Text>
-            <TextInput
-              keyboardAppearance="dark"
-              keyboardType="numeric"
-              placeholder="lbs/acre"
-              style={styles.TextInputContainer}
-            />
-          </View>
-          {/* Input Weight of Mulch (per bag) */}
-          <View style={styles.row}>
-            <Text style={styles.label}>Weight of Mulch (per bag) =</Text>
-            <TextInput
-              keyboardAppearance="dark"
-              keyboardType="numeric"
-              placeholder="lbs"
-              style={styles.TextInputContainer}
-            />
-          </View>
-          {/* Input Working Capacity of Tank */}
-          <View style={styles.row}>
-            <Text style={styles.label}>Working Capacity of Tank =</Text>
-            <TextInput
-              keyboardAppearance="dark"
-              keyboardType="numeric"
-              placeholder="gal"
-              style={styles.TextInputContainer}
-            />
-          </View>
-          {/* Input Mulch Mixing Rate */}
-          <View style={styles.row}>
-            <Text style={styles.label}>Mulch Mixing Rate =</Text>
-            <TextInput
-              keyboardAppearance="dark"
-              keyboardType="numeric"
-              placeholder="lbs/100 gal"
-              style={styles.TextInputContainer}
-            />
+          {/* Container for Mulch Calculation Inputs start here*/}
+          <View style={styles.MulchInputsContainer}>
+            <View style={styles.InnerMulchInputsContainer}>
+              <Text style={styles.label}>How Much Mulch Is Needed?</Text>
+
+              {/* Input Total Project Size */}
+              <View style={styles.Forms}>
+                <Text style={styles.label}>Total Size of Project =</Text>
+                <TextInput
+                  keyboardAppearance="dark"
+                  keyboardType="numeric"
+                  placeholder="sq. ft."
+                  placeholderTextColor="#787878"
+                  style={styles.TextInputContainer}
+                />
+              </View>
+
+              {/* Input Target Mulch Application Rate */}
+              <View style={styles.Forms}>
+                <Text style={styles.label}>
+                  Target Mulch Application Rate =
+                </Text>
+                <TextInput
+                  keyboardAppearance="dark"
+                  keyboardType="numeric"
+                  placeholder="lbs/acre"
+                  placeholderTextColor="#787878"
+                  style={styles.TextInputContainer}
+                />
+              </View>
+
+              {/* Input Weight of Mulch (per bag) */}
+              <View style={styles.Forms}>
+                <Text style={styles.label}>Weight of Mulch (per bag) =</Text>
+                <TextInput
+                  keyboardAppearance="dark"
+                  keyboardType="numeric"
+                  placeholder="lbs"
+                  placeholderTextColor="#787878"
+                  style={styles.TextInputContainer}
+                />
+              </View>
+
+              {/* Input Working Capacity of Tank */}
+              <View style={styles.Forms}>
+                <Text style={styles.label}>Working Capacity of Tank =</Text>
+                <TextInput
+                  keyboardAppearance="dark"
+                  keyboardType="numeric"
+                  placeholder="gal"
+                  placeholderTextColor="#787878"
+                  style={styles.TextInputContainer}
+                />
+              </View>
+
+              {/* Input Mulch Mixing Rate */}
+              <View style={styles.Forms}>
+                <Text style={styles.label}>Mulch Mixing Rate =</Text>
+                <TextInput
+                  keyboardAppearance="dark"
+                  keyboardType="numeric"
+                  placeholder="lbs/100 gal"
+                  placeholderTextColor="#787878"
+                  style={styles.TextInputContainer}
+                />
+              </View>
+            </View>
           </View>
 
-          <View style={styles.btnContainer}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => console.log("Button pressed")}
-            >
-              <Text> Clear all Fields </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => console.log("Button pressed")}
-            >
-              <Text> Calculate </Text>
-            </TouchableOpacity>
+          {/* Container for Compost Calculation Inputs start here*/}
+          <View style={styles.CompostInputsContainer}>
+            <View style={styles.InnerCompostInputsContainer}>
+              <Text style={styles.label}>Compost</Text>
+
+              {/* Input Compost Application Area */}
+              <View style={styles.Forms}>
+                <Text style={styles.label}>Enter Application Area</Text>
+                <TextInput
+                  keyboardAppearance="dark"
+                  keyboardType="numeric"
+                  placeholder="sq. ft."
+                  placeholderTextColor="#787878"
+                  style={styles.TextInputContainer}
+                />
+              </View>
+
+              {/* Input Desired Compost Depth */}
+              <View style={styles.Forms}>
+                <Text style={styles.label}>Enter Desired Compost Depth</Text>
+                <TextInput
+                  keyboardAppearance="dark"
+                  keyboardType="numeric"
+                  placeholder="inches"
+                  placeholderTextColor="#787878"
+                  style={styles.TextInputContainer}
+                />
+              </View>
+
+              {/* Container for Buttons*/}
+              <View style={styles.BtnContainer}>
+                <View style={styles.InnerBtnContainer}>
+                  <TouchableOpacity
+                    style={styles.Button}
+                    onPress={() => console.log("Button pressed")}
+                  >
+                    <Text style={styles.BtnText}>Clear all Fields</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.Button}
+                    onPress={() => console.log("Button pressed")}
+                  >
+                    <Text style={styles.BtnText}> Calculate </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.Button}
+                    onPress={() => console.log("Button pressed")}
+                  >
+                    <Text style={styles.BtnText}> Save Calculations </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
           </View>
+
+          <StatusBar></StatusBar>
         </View>
-        <StatusBar></StatusBar>
-      </View>
-    </TouchableWithoutFeedback>
-  );
+      </TouchableWithoutFeedback>
+    );
+  }
 }
-
 const styles = StyleSheet.create({
-  container: {
+  Container: {
+    width: "100%",
+    height: "85%",
     padding: 5,
-    flex: 1,
-    backgroundColor: "white",
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
   Header: {
-    height: 50,
-    paddingTop: 20,
+    width: "100%",
+    height: "15%",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#D5F5E3",
+  },
+  label: {
     color: "black",
-    textAlign: "center",
     fontWeight: "bold",
+    padding: 5,
   },
-  InputsContainer: {
-    flexDirection: "column",
+  // Styling for entire Mulch User Inputs Section
+  MulchInputsContainer: {
+    width: "60%",
+    height: "65%",
+    padding: 5,
+  },
+  InnerMulchInputsContainer: {
     flex: 1,
-    borderWidth: 3,
-    borderColor: "green",
+    backgroundColor: "#D5F5E3",
+    alignItems: "center",
   },
-  /* Styling for TextInput components */
+  // Styling for entire Compost User Inputs Section
+  CompostInputsContainer: {
+    width: "40%",
+    height: "65%",
+    padding: 5,
+  },
+  InnerCompostInputsContainer: {
+    flex: 1,
+    backgroundColor: "#D5F5E3",
+    alignItems: "center",
+  },
+  // Styling for each label plus text input
+  Forms: {
+    alignItems: "center",
+  },
+  // Styling for TextInput component
   TextInputContainer: {
     borderColor: "black",
     borderWidth: 1,
@@ -121,29 +207,31 @@ const styles = StyleSheet.create({
     width: 150,
     backgroundColor: "white",
   },
-  btnContainer: {
-    padding: 4,
-    borderBottomColor: "red",
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    flexDirection: "row",
-    justifyContent: "flex-end",
+  // Styling for Buttons
+  BtnContainer: {
+    width: "100%",
+    height: "47%",
+    padding: 5,
   },
-  button: {
+  InnerBtnContainer: {
+    flex: 1,
+    padding: 5,
     alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    padding: 10,
-    borderRadius: 10,
+    justifyContent: "space-evenly",
   },
-  row: {
-    height: 70,
-    padding: 4,
-    borderBottomColor: "red",
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    flexDirection: "column",
+  Button: {
+    flex: 3,
+    margin: 5,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "green",
+    width: "100%",
+    borderRadius: 50,
+    borderWidth: 2,
+    borderColor: "black",
   },
-  label: {
-    color: "black",
-    paddingBottom: 10,
+  BtnText: {
+    color: "white",
     fontWeight: "bold",
   },
 });

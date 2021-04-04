@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   Header: {
     height: 50,
-    paddingTop: 20,
+    paddingTop: 30,
     color: "black",
     textAlign: "center",
     fontWeight: "bold",
