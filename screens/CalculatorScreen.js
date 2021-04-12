@@ -75,16 +75,11 @@ function CalculatorScreen() {
           <Text style={styles.headerLabel}>HYDROSEED CALCULATOR</Text>
         </View>
 
-        <View style={{ height: "75%", width: "100%" }}>
-          <ScrollView
-            style={{
-              width: "95%",
-              margin: 5,
-              marginLeft: 9,
-              marginBottom: 0,
-            }}
-            contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}
-          >
+        <ScrollView
+          style={styles.scrollView}
+          contentContainerStyle={styles.contentContainer}
+        >
+          <TouchableOpacity activeOpacity={1} style={{ width: "100%" }}>
             <View style={styles.inputsContainer}>
               <MulchInputs />
               <CompostInputs />
@@ -93,8 +88,8 @@ function CalculatorScreen() {
               <Text style={styles.headerLabel}>Calculation Results</Text>
             </View>
             <Outputs></Outputs>
-          </ScrollView>
-        </View>
+          </TouchableOpacity>
+        </ScrollView>
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );

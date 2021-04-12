@@ -1,11 +1,25 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+  scrollView: {
+    alignSelf: "center",
+    height: "20%",
+    width: "95%",
+    margin: 5,
+    padding: 5,
+  },
+  contentContainer: {
+    flexGrow: 1,
+    alignItems: "center",
+    backgroundColor: "white",
+    paddingBottom: 100,
+  },
   container: {
     flex: 1,
     flexDirection: "column",
     flexWrap: "wrap",
     padding: 5,
+    justifyContent: "center",
   },
   header: {
     marginLeft: 9,
@@ -39,6 +53,7 @@ const styles = StyleSheet.create({
   inputsContainer: {
     flex: 1,
     flexDirection: "row",
+    alignItems: "center",
   },
   // Styling for entire Mulch User Inputs Section
   mulchInputsContainer: {
@@ -57,7 +72,7 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 5,
     // Inside Container
-    padding: 2,
+    padding: 5,
     backgroundColor: "#046b99",
     alignItems: "center",
     justifyContent: "flex-start",
