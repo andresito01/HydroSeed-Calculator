@@ -29,6 +29,7 @@ const Navigation = () => {
             ),
           }}
         />
+
         <Tab.Screen
           name="History"
           component={HistoryScreen}

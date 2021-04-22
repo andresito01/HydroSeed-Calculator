@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     padding: 5,
     justifyContent: "center",
+    backgroundColor: "white",
   },
   header: {
     marginLeft: 9,
@@ -55,21 +56,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  // Styling for entire Mulch User Inputs Section
-  mulchInputsContainer: {
+  // Styling for User Inputs Section
+  inputContainer: {
     flex: 1,
-    margin: 5,
-    // Inside Container
-    padding: 5,
-    backgroundColor: "#046b99",
-    alignItems: "center",
-    justifyContent: "flex-start",
-    borderColor: "#fdb81e",
-    borderWidth: 2,
-  },
-  // Styling for entire Compost User Inputs Section
-  compostInputsContainer: {
-    flex: 1,
+    width: "50%",
     margin: 5,
     // Inside Container
     padding: 5,
@@ -81,9 +71,10 @@ const styles = StyleSheet.create({
   },
   // Styling for Buttons Container
   btnContainer: {
+    //marginTop: 57,
     width: "100%",
     padding: 5,
-    flex: 3,
+    flex: 4,
     alignItems: "center",
     justifyContent: "space-evenly",
   },
@@ -91,7 +82,7 @@ const styles = StyleSheet.create({
   resultsContainer: {
     flex: 1,
     width: "100%",
-    margin: 5,
+    marginTop: 5,
     padding: 2,
     alignItems: "stretch",
     borderWidth: 2,
@@ -150,7 +141,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     flex: 1,
-    margin: 20,
+    margin: 10,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "green",

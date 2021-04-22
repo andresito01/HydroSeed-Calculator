@@ -2,7 +2,7 @@ import React from "react";
 import { styles } from "../styles/styles";
 import { Text, View } from "react-native";
 
-const Outputs = () => {
+const Outputs = ({ userInputs, outputs }) => {
   return (
     <View style={styles.resultsContainer}>
       <Text style={styles.label}>Total Mulch Needed for Project</Text>

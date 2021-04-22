@@ -10,34 +10,18 @@ import {
   Keyboard,
   ScrollView,
 } from "react-native";
-import { Input } from "react-native-elements";
-import MulchInputs from "../components/MulchInputs";
-import CompostInputs from "../components/CompostInputs";
-import Buttons from "../components/Buttons";
+//import Buttons from "../components/Buttons";
+import Inputs from "../components/Inputs";
 import Outputs from "../components/Outputs";
+import { Input } from "react-native-elements/dist/input/Input";
 
-function CalculatorScreen() {
-  const acre = 43560;
-  const [inputs, setInputs] = useState({
-    projectSize: 0,
-    mulchAppRate: 0,
-    weightOfMulch: 0,
-    tankCapacity: 0,
-    mulchMixingRate: 0,
-    compostAppArea: 0,
-    compostDepth: 0,
-  });
-
-  const [outputs, setOutputs] = useState({
-    lbsOfMulchNeeded: 0,
-    bagsOfMulchNeeded: 0,
-    bagsPerTankNeeded: 0,
-    tankLoadsNeeded: 0,
-    areaPerTank: 0,
-    cubicYardsOfCompost: 0,
-    cubicFootBags: 0,
-  });
-
+const CalculatorScreen = ({
+  userInputs,
+  updateInputs,
+  outputs,
+  setOutputs,
+  reset,
+}) => {
   /*const inputHandler = (enteredText) => {
     setInputs({ ...inputs, projectSize: enteredText });
   };
@@ -81,27 +65,27 @@ function CalculatorScreen() {
         >
           <TouchableOpacity activeOpacity={1} style={{ width: "100%" }}>
             <View style={styles.inputsContainer}>
-              <MulchInputs />
-              <CompostInputs />
+              <Inputs
+                userInputs={userInputs}
+                updateInputs={updateInputs}
+                outputs={outputs}
+                setOutputs={setOutputs}
+                reset={reset}
+              />
             </View>
             <View style={styles.header3}>
               <Text style={styles.headerLabel}>Calculation Results</Text>
             </View>
-            <Outputs></Outputs>
+            <Outputs
+              userInputs={userInputs}
+              outputs={outputs}
+              setOutputs={setOutputs}
+            />
           </TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );
-}
+};
 
 export default CalculatorScreen;
-
-/* 
-<View style={styles.header2}>
-          <Text style={{ color: "black", fontWeight: "bold", padding: 5 }}>
-            Calculation Results
-          </Text>
-</View>
-
-*/
