@@ -3,11 +3,18 @@ import { styles } from "../styles/styles";
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
 //import Buttons from "./Buttons";
 
-const Inputs = ({ userInputs, updateInputs }) => {
+const Inputs = ({
+  userInputs,
+  updateInputs,
+  outputs,
+  setOutputs,
+  calculate,
+}) => {
   // This reset method resets the state however, the text fields are not clearing
 
   const reset = () => {
     updateInputs({});
+    setOutputs({});
   };
   return (
     <View style={styles.inputsContainer}>
@@ -28,7 +35,7 @@ const Inputs = ({ userInputs, updateInputs }) => {
             placeholder="sq. ft."
             placeholderTextColor="#787878"
             style={styles.textInputContainer}
-            value={Number(userInputs.projectSize)}
+            value={userInputs.projectSize}
             onChangeText={(val) =>
               updateInputs({ ...userInputs, projectSize: Number(val) })
             }
@@ -160,10 +167,7 @@ const Inputs = ({ userInputs, updateInputs }) => {
           <TouchableOpacity style={styles.btn} onPress={reset}>
             <Text style={styles.btnText}>Clear all Fields</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => console.log("btn pressed")}
-          >
+          <TouchableOpacity style={styles.btn} onPress={calculate}>
             <Text style={styles.btnText}>Calculate</Text>
           </TouchableOpacity>
           <TouchableOpacity

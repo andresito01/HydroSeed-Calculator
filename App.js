@@ -32,6 +32,46 @@ export default function App() {
     cubicFtBagsCompost: 0,
   });
 
+  // Calculations
+
+  const calculateResults = () => {
+    calcLbsOfMulch();
+    //calcBagsOfMulch();
+    //calcBagsPerTank();
+    //calcTankLoads();
+  };
+
+  const calcLbsOfMulch = () => {
+    let acre = 43560;
+    setOutputs({
+      ...outputs,
+      lbsOfMulch: Math.round(
+        (inputs.projectSize / acre) * outputs.mulchAppRate
+      ),
+    });
+  };
+
+  const calcBagsOfMulch = () => {
+    setOutputs({
+      ...outputs,
+      bagsOfMulchNeeded: Math.round(outputs.lbsOfMulch / inputs.weightOfMulch),
+    });
+  };
+
+  const calcBagsPerTank = () => {
+    setOutputs({
+      ...outputs,
+      bagsPerTank: inputs.tankCapacity / 100,
+    });
+  };
+
+  const calcTankLoads = () => {
+    setOutputs({
+      ...outputs,
+      tankLoads: outputs.bagsOfMulch / outputs.bagsPerTank,
+    });
+  };
+
   // Method to clear all text fields
   /*const handleReset = () => {
     Array.from(document.querySelectorAll("TextInput")).forEach(
@@ -64,6 +104,7 @@ export default function App() {
               updateInputs={setInputs}
               outputs={outputs}
               setOutputs={setOutputs}
+              calculate={calculateResults}
             />
           )}
           options={{

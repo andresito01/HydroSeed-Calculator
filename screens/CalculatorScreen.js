@@ -21,33 +21,8 @@ const CalculatorScreen = ({
   outputs,
   setOutputs,
   reset,
+  calculate,
 }) => {
-  /*const inputHandler = (enteredText) => {
-    setInputs({ ...inputs, projectSize: enteredText });
-  };
-
-  ...outputs,
-      bagsOfMulchNeeded: Math.round(
-        outputs.lbsOfMulchNeeded / inputs.weightOfMulch
-      ),
-      ...outputs,
-      bagsPerTankNeeded: inputs.tankCapacity / 100,
-      ...outputs,
-      tankLoadsNeeded: outputs.bagsOfMulchNeeded / outputs.bagsPerTankNeeded,
-
-  function enactCalculations() {
-   // calculate total lbs of mulch
-    setOutputs({
-      ...outputs,
-      lbsOfMulchNeeded: Math.round(
-        (inputs.projectSize / acre) * inputs.mulchAppRate
-      ),
-    });
-
-    console.log(inputs);
-    console.log(outputs);
-  } */
-
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -71,6 +46,7 @@ const CalculatorScreen = ({
                 outputs={outputs}
                 setOutputs={setOutputs}
                 reset={reset}
+                calculate={calculate}
               />
             </View>
             <View style={styles.header3}>
@@ -80,6 +56,7 @@ const CalculatorScreen = ({
               userInputs={userInputs}
               outputs={outputs}
               setOutputs={setOutputs}
+              calculate={calculate}
             />
           </TouchableOpacity>
         </ScrollView>
