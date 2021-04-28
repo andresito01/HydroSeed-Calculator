@@ -13,49 +13,92 @@ const Tab = createMaterialTopTabNavigator();
 export default function App() {
   // User Inputs
   const [inputs, setInputs] = useState({
-    projectSize: 0,
-    mulchAppRate: 0,
-    weightOfMulch: 0,
-    tankCapacity: 0,
-    mulchMixingRate: 0,
-    compostAppArea: 0,
-    compostDepth: 0,
+    projectSize: "",
+    mulchAppRate: "",
+    weightOfMulch: "",
+    tankCapacity: "",
+    mulchMixingRate: "",
+    compostAppArea: "",
+    compostDepth: "",
   });
-
+  // Outputs
   const [outputs, setOutputs] = useState({
-    lbsOfMulch: 0,
-    bagsOfMulch: 0,
-    bagsPerTank: 0,
-    tankLoads: 0,
-    sqftPerTank: 0,
-    cubicYardsOfCompost: 0,
-    cubicFtBagsCompost: 0,
+    lbsOfMulch: "",
+    bagsOfMulch: "",
+    bagsPerTank: "",
+    tankLoads: "",
+    sqftPerTank: "",
+    cubicYardsOfCompost: "",
+    cubicFtBagsCompost: "",
   });
-
-  // Calculations
 
   const calculateResults = () => {
+    var acre = 43560;
+    var newLbsOfMulch = Math.round(
+      (Number(inputs.projectSize) / acre) * Number(inputs.mulchAppRate)
+    );
+    console.log("newLbsOfMulch: " + newLbsOfMulch);
+    //setOutputs({ ...outputs, lbsOfMulch: String(newLbsOfMulch) });
+    //console.log("lbsOfMulch: " + outputs.lbsOfMulch);
+
+    var newBagsOfMulch = newLbsOfMulch / Number(inputs.weightOfMulch);
+    console.log("newBagsOfMulch: " + newBagsOfMulch);
+    //setOutputs({ ...outputs, bagsOfMulch: String(newBagsOfMulch) });
+    //console.log("bagsOfMulch: " + outputs.bagsOfMulch);
+
+    var newBagsPerTank = Number(inputs.tankCapacity) / 100;
+    console.log("newBagsPerTank: " + newBagsPerTank);
+    //setOutputs({ ...outputs, bagsPerTank: String(newBagsPerTank) });
+    //console.log("bagsPerTank: " + outputs.bagsPerTank);
+
+    var newTankLoads = (newBagsOfMulch / newBagsPerTank).toFixed(2);
+    console.log("newTankLoads: " + newTankLoads);
+    //setOutputs({ ...outputs, tankLoads: String(newTankLoads) });
+    //console.log("tankLoads: " + outputs.tankLoads);
+    //var sqftPerTank =
+    //var cubicYardsOfCompost =
+    //var cubicFtBagsCompost =
+    const newOutputs = { ...outputs };
+    newOutputs.lbsOfMulch = String(newLbsOfMulch);
+    newOutputs.bagsOfMulch = String(newBagsOfMulch);
+    newOutputs.bagsPerTank = String(newBagsPerTank);
+    newOutputs.tankLoads = String(newTankLoads);
+    setOutputs(newOutputs);
+    console.log("lbsOfMulch: " + outputs.lbsOfMulch);
+    console.log("bagsOfMulch: " + outputs.bagsOfMulch);
+    console.log("bagsPerTank: " + outputs.bagsPerTank);
+    console.log("tankLoads: " + outputs.tankLoads);
+  };
+
+  // Calculations
+  // State is asynchronous, so solve this issue by finding a way to update state instantly
+  /*const calculatedResults = () => {
     calcLbsOfMulch();
+    console.log(outputs.lbsOfMulch);
     //calcBagsOfMulch();
     //calcBagsPerTank();
     //calcTankLoads();
   };
 
   const calcLbsOfMulch = () => {
-    let acre = 43560;
-    setOutputs({
-      ...outputs,
-      lbsOfMulch: Math.round(
-        (inputs.projectSize / acre) * outputs.mulchAppRate
-      ),
-    });
+    var ps = Number(inputs.projectSize);
+    var mar = Number(inputs.mulchAppRate);
+    var result = Math.round((ps / 43560) * mar);
+    const newOutputs = { ...outputs };
+    newOutputs.lbsOfMulch = String(result);
+    setOutputs(newOutputs);
+    console.log("lbOfMulch = " + outputs.lbsOfMulch);
   };
 
   const calcBagsOfMulch = () => {
+    var lom = Number(outputs.lbsOfMulch);
+    var wom = Number(inputs.weightOfMulch);
+    var result = Math.round(lom / wom);
     setOutputs({
       ...outputs,
-      bagsOfMulchNeeded: Math.round(outputs.lbsOfMulch / inputs.weightOfMulch),
+      bagsOfMulch: String(result),
     });
+    //console.log("bagsOfMulch = " + outputs.bagsOfMulch);
   };
 
   const calcBagsPerTank = () => {

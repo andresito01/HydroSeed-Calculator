@@ -4,28 +4,28 @@ const styles = StyleSheet.create({
   scrollView: {
     alignSelf: "center",
     height: "20%",
-    width: "95%",
-    margin: 5,
-    padding: 5,
+    width: "100%",
+    marginTop: 5,
   },
   contentContainer: {
     flexGrow: 1,
     alignItems: "center",
     backgroundColor: "white",
-    paddingBottom: 100,
+    paddingBottom: 200,
+    paddingLeft: 2,
+    paddingRight: 2,
   },
   container: {
     flex: 1,
     flexDirection: "column",
     flexWrap: "wrap",
-    padding: 5,
     justifyContent: "center",
     backgroundColor: "white",
+    alignItems: "center",
   },
   header: {
-    marginLeft: 9,
     height: "25%",
-    width: "95%",
+    width: "98%",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#046b99",
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
   header3: {
     height: "15%",
-    width: "100%",
+    width: "99%",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#046b99",
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   inputsContainer: {
-    flex: 1,
+    //flex: 1,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -60,9 +60,8 @@ const styles = StyleSheet.create({
   inputContainer: {
     flex: 1,
     width: "50%",
-    margin: 5,
+    margin: 1,
     // Inside Container
-    padding: 5,
     backgroundColor: "#046b99",
     alignItems: "center",
     justifyContent: "flex-start",
@@ -71,7 +70,7 @@ const styles = StyleSheet.create({
   },
   // Styling for Buttons Container
   btnContainer: {
-    //marginTop: 57,
+    marginBottom: 97,
     width: "100%",
     padding: 5,
     flex: 4,
@@ -109,8 +108,23 @@ const styles = StyleSheet.create({
   forms: {
     flex: 1,
     width: "100%",
-    alignItems: "center",
+    alignItems: "baseline",
     justifyContent: "center",
+    padding: 2,
+  },
+  inForm: {
+    width: "100%",
+    padding: 2,
+    alignItems: "center",
+    flexDirection: "row",
+    borderBottomWidth: 1,
+    borderBottomColor: "white",
+  },
+  inForm2: {
+    width: "100%",
+    padding: 2,
+    alignItems: "center",
+    flexDirection: "row",
   },
   // Styling for TextInput component
   textInputContainer: {
@@ -118,9 +132,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     padding: 10,
-    width: 130,
+    width: 100,
     height: 35,
     backgroundColor: "white",
+    marginRight: 5,
   },
   textInputContainer2: {
     borderColor: "black",
@@ -130,14 +145,16 @@ const styles = StyleSheet.create({
     height: 33,
     backgroundColor: "white",
   },
+  // Unlike textInputContainer, the margin is modified for mulch mixing rate text input
   textInputContainer3: {
     borderColor: "black",
     borderWidth: 1,
-    borderRadius: 0,
-    padding: 7,
-    width: "100%",
-    height: 33,
+    borderRadius: 8,
+    padding: 10,
+    width: 100,
+    height: 35,
     backgroundColor: "white",
+    marginRight: 0,
   },
   btn: {
     flex: 1,

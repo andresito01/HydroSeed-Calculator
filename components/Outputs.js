@@ -23,7 +23,7 @@ const Outputs = ({ outputs }) => {
         <Text style={styles.textInputContainer2}>
           {outputs.tankLoads} tank loads
         </Text>
-        <Text style={styles.textInputContainer3}>
+        <Text style={styles.textInputContainer2}>
           {outputs.sqftPerTank} sq. ft./tank{" "}
         </Text>
       </View>
