@@ -7,6 +7,8 @@ import Icon from "react-native-vector-icons/Ionicons";
 // Importing Screens
 import CalculatorScreen from "./screens/CalculatorScreen";
 import HistoryScreen from "./screens/HistoryScreen";
+// Importing Custom useEffect Hook
+import useDidMountEffect from "./components/useDidMountEffect";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -64,11 +66,14 @@ export default function App() {
     newOutputs.bagsPerTank = String(newBagsPerTank);
     newOutputs.tankLoads = String(newTankLoads);
     setOutputs(newOutputs);
+  };
+
+  useDidMountEffect(() => {
     console.log("lbsOfMulch: " + outputs.lbsOfMulch);
     console.log("bagsOfMulch: " + outputs.bagsOfMulch);
     console.log("bagsPerTank: " + outputs.bagsPerTank);
     console.log("tankLoads: " + outputs.tankLoads);
-  };
+  }, [outputs]);
 
   // Calculations
   // State is asynchronous, so solve this issue by finding a way to update state instantly
