@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { styles } from "../styles/styles";
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
-//import Buttons from "./Buttons";
+import { Picker } from "@react-native-picker/picker";
 
 const Inputs = ({
   userInputs,
@@ -9,6 +9,9 @@ const Inputs = ({
   outputs,
   setOutputs,
   calculate,
+  scrollToBottom,
+  showModal,
+  setShowModal,
 }) => {
   // This reset method resets the state however, the text fields are not clearing
 
@@ -16,6 +19,9 @@ const Inputs = ({
     updateInputs({});
     setOutputs({});
   };
+
+  const [selectedUnit, setSelectedUnit] = useState("sq. ft");
+
   return (
     <View style={styles.inputsContainer}>
       <View style={styles.inputContainer}>
@@ -25,9 +31,7 @@ const Inputs = ({
 
         {/* Input Total Project Size */}
         <View style={styles.forms}>
-          <Text style={styles.label}>
-            Total Size of Project: {userInputs.projectSize}
-          </Text>
+          <Text style={styles.label}>Total Size of Project:</Text>
           <View style={styles.inForm}>
             <TextInput
               name="projectSize"
@@ -41,15 +45,33 @@ const Inputs = ({
                 updateInputs({ ...userInputs, projectSize: val })
               }
             />
-            <Text style={styles.label}>sq. ft</Text>
+            <View style={{ borderWidth: 1, borderColor: "red", flexGrow: 1 }}>
+              <Picker
+                style={{
+                  height: 35,
+                  borderWidth: 1,
+                  borderColor: "red",
+                  backgroundColor: "white",
+                  //flex: 1,
+                  justifyContent: "center",
+                  //alignItems: "center",
+                }}
+                selectedValue={selectedUnit}
+                onValueChange={(itemValue, itemIndex) =>
+                  setSelectedUnit(itemValue)
+                }
+              >
+                <Picker.Item style={styles.label} label="sq. ft" value="sqFt" />
+                <Picker.Item style={styles.label} label="acre" value="acre" />
+              </Picker>
+              {/*<Text style={styles.label}>sq. ft</Text>*/}
+            </View>
           </View>
         </View>
 
         {/* Input Target Mulch Application Rate */}
         <View style={styles.forms}>
-          <Text style={styles.label}>
-            Target Mulch Application Rate: {userInputs.mulchAppRate}
-          </Text>
+          <Text style={styles.label}>Target Mulch Application Rate:</Text>
           <View style={styles.inForm}>
             <TextInput
               name="mulchAppRate"
@@ -69,9 +91,7 @@ const Inputs = ({
 
         {/* Input Weight of Mulch (per bag) */}
         <View style={styles.forms}>
-          <Text style={styles.label}>
-            Weight of Mulch (per bag): {userInputs.weightOfMulch}
-          </Text>
+          <Text style={styles.label}>Weight of Mulch (per bag):</Text>
           <View style={styles.inForm}>
             <TextInput
               name="weightOfMulch"
@@ -91,9 +111,7 @@ const Inputs = ({
 
         {/* Input Working Capacity of Tank */}
         <View style={styles.forms}>
-          <Text style={styles.label}>
-            Working Capacity of Tank: {userInputs.tankCapacity}
-          </Text>
+          <Text style={styles.label}>Working Capacity of Tank:</Text>
           <View style={styles.inForm}>
             <TextInput
               name="tankCapacity"
@@ -113,9 +131,7 @@ const Inputs = ({
 
         {/* Input Mulch Mixing Rate */}
         <View style={styles.forms}>
-          <Text style={styles.label}>
-            Mulch Mixing Rate: {userInputs.mulchMixingRate}
-          </Text>
+          <Text style={styles.label}>Mulch Mixing Rate:</Text>
           <View style={styles.inForm2}>
             <TextInput
               name="mulchMixingRate"
@@ -123,7 +139,7 @@ const Inputs = ({
               keyboardType="numeric"
               placeholder="lbs/100 gal"
               placeholderTextColor="#787878"
-              style={styles.textInputContainer3}
+              style={styles.textInputContainer2}
               value={userInputs.mulchMixingRate}
               onChangeText={(val) =>
                 updateInputs({ ...userInputs, mulchMixingRate: val })
@@ -141,9 +157,7 @@ const Inputs = ({
 
         {/* Input Compost Application Area */}
         <View style={styles.forms}>
-          <Text style={styles.label}>
-            Enter Application Area: {userInputs.compostAppArea}
-          </Text>
+          <Text style={styles.label}>Enter Application Area:</Text>
           <View style={styles.inForm}>
             <TextInput
               name="compostAppArea"
@@ -163,9 +177,7 @@ const Inputs = ({
 
         {/* Input Desired Compost Depth */}
         <View style={styles.forms}>
-          <Text style={styles.label}>
-            Enter Desired Compost Depth: {userInputs.compostDepth}
-          </Text>
+          <Text style={styles.label}>Enter Desired Compost Depth:</Text>
           <View style={styles.inForm}>
             <TextInput
               name="compostDepth"
@@ -187,12 +199,18 @@ const Inputs = ({
           <TouchableOpacity style={styles.btn} onPress={reset}>
             <Text style={styles.btnText}>Clear all Fields</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btn} onPress={calculate}>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => {
+              calculate();
+              //scrollToBottom();
+            }}
+          >
             <Text style={styles.btnText}>Calculate</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.btn}
-            onPress={() => console.log("btn pressed")}
+            onPress={() => setShowModal(true)}
           >
             <Text style={styles.btnText}> Save Calculations </Text>
           </TouchableOpacity>

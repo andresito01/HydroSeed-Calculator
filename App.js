@@ -14,127 +14,89 @@ const Tab = createMaterialTopTabNavigator();
 
 export default function App() {
   // User Inputs
-  const [inputs, setInputs] = useState({
-    projectSize: "",
-    mulchAppRate: "",
-    weightOfMulch: "",
-    tankCapacity: "",
-    mulchMixingRate: "",
-    compostAppArea: "",
-    compostDepth: "",
-  });
+  const [inputs, setInputs] = useState([
+    {
+      projectSize: "",
+      mulchAppRate: "",
+      weightOfMulch: "",
+      tankCapacity: "",
+      mulchMixingRate: "",
+      compostAppArea: "",
+      compostDepth: "",
+    },
+  ]);
   // Outputs
-  const [outputs, setOutputs] = useState({
-    lbsOfMulch: "",
-    bagsOfMulch: "",
-    bagsPerTank: "",
-    tankLoads: "",
-    sqftPerTank: "",
-    cubicYardsOfCompost: "",
-    cubicFtBagsCompost: "",
-  });
+  const [outputs, setOutputs] = useState([
+    {
+      lbsOfMulch: "",
+      bagsOfMulch: "",
+      bagsPerTank: "",
+      tankLoads: "",
+      gallonsOfWater: "",
+      sqftPerTank: "",
+      cubicYardsOfCompost: "",
+      cubicFtBagsCompost: "",
+    },
+  ]);
 
+  // Calculate results by storing the results in new local variables, create a new object called newOutputs that is a copy of the object outputs (that is a state), assign results to the new object then copy it back to the state outputs.
   const calculateResults = () => {
     var acre = 43560;
-    var newLbsOfMulch = Math.round(
-      (Number(inputs.projectSize) / acre) * Number(inputs.mulchAppRate)
-    );
-    console.log("newLbsOfMulch: " + newLbsOfMulch);
-    //setOutputs({ ...outputs, lbsOfMulch: String(newLbsOfMulch) });
-    //console.log("lbsOfMulch: " + outputs.lbsOfMulch);
 
-    var newBagsOfMulch = newLbsOfMulch / Number(inputs.weightOfMulch);
+    var newLbsOfMulch = (
+      (Number(inputs.projectSize) / acre) *
+      Number(inputs.mulchAppRate)
+    ).toFixed(2);
+    console.log("newLbsOfMulch: " + newLbsOfMulch);
+
+    var newBagsOfMulch = (newLbsOfMulch / Number(inputs.weightOfMulch)).toFixed(
+      2
+    );
     console.log("newBagsOfMulch: " + newBagsOfMulch);
-    //setOutputs({ ...outputs, bagsOfMulch: String(newBagsOfMulch) });
-    //console.log("bagsOfMulch: " + outputs.bagsOfMulch);
 
     var newBagsPerTank = Number(inputs.tankCapacity) / 100;
     console.log("newBagsPerTank: " + newBagsPerTank);
-    //setOutputs({ ...outputs, bagsPerTank: String(newBagsPerTank) });
-    //console.log("bagsPerTank: " + outputs.bagsPerTank);
 
     var newTankLoads = (newBagsOfMulch / newBagsPerTank).toFixed(2);
     console.log("newTankLoads: " + newTankLoads);
-    //setOutputs({ ...outputs, tankLoads: String(newTankLoads) });
-    //console.log("tankLoads: " + outputs.tankLoads);
-    //var sqftPerTank =
-    //var cubicYardsOfCompost =
-    //var cubicFtBagsCompost =
+
+    var newGallonsOfWater = (
+      ((100 / inputs.mulchMixingRate) * newLbsOfMulch) /
+      8.34
+    ).toFixed(2);
+
+    //var newSqFtPerTank = ;
+
+    var newCubicYardsOfCompost = (
+      (inputs.compostAppArea * (inputs.compostDepth / 12)) /
+      27
+    ).toFixed(2);
+
+    //var newCubicFtBagsCompost = ;
+
     const newOutputs = { ...outputs };
     newOutputs.lbsOfMulch = String(newLbsOfMulch);
     newOutputs.bagsOfMulch = String(newBagsOfMulch);
     newOutputs.bagsPerTank = String(newBagsPerTank);
     newOutputs.tankLoads = String(newTankLoads);
+    newOutputs.gallonsOfWater = String(newGallonsOfWater);
+    //newOutputs.sqftPerTank = String(newSqFtPerTank);
+    newOutputs.cubicYardsOfCompost = String(newCubicYardsOfCompost);
+    //newOutputs.cubicFtBagsCompost = String(newCubicFtBagsCompost);
     setOutputs(newOutputs);
   };
 
+  // Use the custom useEffect hook to log the values of ouputs after every change to outputs (this custom hook prevents being called on initial render)
   useDidMountEffect(() => {
     console.log("lbsOfMulch: " + outputs.lbsOfMulch);
     console.log("bagsOfMulch: " + outputs.bagsOfMulch);
     console.log("bagsPerTank: " + outputs.bagsPerTank);
     console.log("tankLoads: " + outputs.tankLoads);
+    console.log("gallonsOfWater: " + outputs.gallonsOfWater);
+    //console.log("sqftPerTank: " + outputs.sqftPerTank);
+    console.log("cubicYardsOfCompost: " + outputs.cubicYardsOfCompost);
+    //console.log("cubicFtBagsCompost: " + outputs.cubicFtBagsCompost);
   }, [outputs]);
-
-  // Calculations
-  // State is asynchronous, so solve this issue by finding a way to update state instantly
-  /*const calculatedResults = () => {
-    calcLbsOfMulch();
-    console.log(outputs.lbsOfMulch);
-    //calcBagsOfMulch();
-    //calcBagsPerTank();
-    //calcTankLoads();
-  };
-
-  const calcLbsOfMulch = () => {
-    var ps = Number(inputs.projectSize);
-    var mar = Number(inputs.mulchAppRate);
-    var result = Math.round((ps / 43560) * mar);
-    const newOutputs = { ...outputs };
-    newOutputs.lbsOfMulch = String(result);
-    setOutputs(newOutputs);
-    console.log("lbOfMulch = " + outputs.lbsOfMulch);
-  };
-
-  const calcBagsOfMulch = () => {
-    var lom = Number(outputs.lbsOfMulch);
-    var wom = Number(inputs.weightOfMulch);
-    var result = Math.round(lom / wom);
-    setOutputs({
-      ...outputs,
-      bagsOfMulch: String(result),
-    });
-    //console.log("bagsOfMulch = " + outputs.bagsOfMulch);
-  };
-
-  const calcBagsPerTank = () => {
-    setOutputs({
-      ...outputs,
-      bagsPerTank: inputs.tankCapacity / 100,
-    });
-  };
-
-  const calcTankLoads = () => {
-    setOutputs({
-      ...outputs,
-      tankLoads: outputs.bagsOfMulch / outputs.bagsPerTank,
-    });
-  };
-
-  // Method to clear all text fields
-  /*const handleReset = () => {
-    Array.from(document.querySelectorAll("TextInput")).forEach(
-      (TextInput) => (TextInput.value = "")
-    );
-    setInputs({
-      projectSize: 0,
-      mulchAppRate: 0,
-      weightOfMulch: 0,
-      tankCapacity: 0,
-      mulchMixingRate: 0,
-      compostAppArea: 0,
-      compostDepth: 0,
-    });
-  };*/
 
   return (
     <NavigationContainer>
@@ -165,7 +127,9 @@ export default function App() {
 
         <Tab.Screen
           name="History"
-          children={() => <HistoryScreen userInputs={inputs} />}
+          children={() => (
+            <HistoryScreen userInputs={inputs} outputs={outputs} />
+          )}
           options={{
             tabBarLabel: "History",
             tabBarIcon: ({ color }) => (

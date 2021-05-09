@@ -7,32 +7,35 @@ const Outputs = ({ outputs }) => {
     <View style={styles.resultsContainer}>
       <Text style={styles.label}>Total Mulch Needed for Project</Text>
       <View style={{ flexDirection: "column" }}>
-        <Text style={styles.textInputContainer2}>
+        <Text style={styles.textOutputContainer}>
           {outputs.lbsOfMulch} lbs of mulch
         </Text>
 
-        <Text style={styles.textInputContainer2}>
+        <Text style={styles.textOutputContainer}>
           {outputs.bagsOfMulch} bags
         </Text>
       </View>
       <Text style={styles.label}>Total Tank Loads Needed for Project</Text>
       <View style={{ flexDirection: "column" }}>
-        <Text style={styles.textInputContainer2}>
+        <Text style={styles.textOutputContainer}>
           {outputs.bagsPerTank} bags per tank
         </Text>
-        <Text style={styles.textInputContainer2}>
+        <Text style={styles.textOutputContainer}>
           {outputs.tankLoads} tank loads
         </Text>
-        <Text style={styles.textInputContainer2}>
+        <Text style={styles.textOutputContainer}>
+          {outputs.gallonsOfWater} gallons of water
+        </Text>
+        <Text style={styles.textOutputContainer}>
           {outputs.sqftPerTank} sq. ft./tank{" "}
         </Text>
       </View>
       <Text style={styles.label}>Total Compost Needed for Project</Text>
       <View style={{ flexDirection: "column" }}>
-        <Text style={styles.textInputContainer2}>
+        <Text style={styles.textOutputContainer}>
           {outputs.cubicYardsOfCompost} cubic yards of compost
         </Text>
-        <Text style={styles.textInputContainer2}>
+        <Text style={styles.textOutputContainer}>
           {outputs.cubicFtBagsCompost} cubic foot bags
         </Text>
       </View>
