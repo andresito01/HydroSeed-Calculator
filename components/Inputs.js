@@ -45,27 +45,8 @@ const Inputs = ({
                 updateInputs({ ...userInputs, projectSize: val })
               }
             />
-            <View style={{ borderWidth: 1, borderColor: "red", flexGrow: 1 }}>
-              <Picker
-                style={{
-                  height: 35,
-                  borderWidth: 1,
-                  borderColor: "red",
-                  backgroundColor: "white",
-                  //flex: 1,
-                  justifyContent: "center",
-                  //alignItems: "center",
-                }}
-                selectedValue={selectedUnit}
-                onValueChange={(itemValue, itemIndex) =>
-                  setSelectedUnit(itemValue)
-                }
-              >
-                <Picker.Item style={styles.label} label="sq. ft" value="sqFt" />
-                <Picker.Item style={styles.label} label="acre" value="acre" />
-              </Picker>
-              {/*<Text style={styles.label}>sq. ft</Text>*/}
-            </View>
+
+            <Text style={styles.label}>sq. ft</Text>
           </View>
         </View>
 

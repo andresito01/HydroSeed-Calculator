@@ -16,6 +16,8 @@ export default function App() {
   // User Inputs
   const [inputs, setInputs] = useState([
     {
+      projectName: "",
+      projectID: "",
       projectSize: "",
       mulchAppRate: "",
       weightOfMulch: "",

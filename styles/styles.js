@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
   // Styling for Calculation Results container
   resultsContainer: {
     flex: 1,
-    //height: "90%",
     width: "100%",
     marginTop: 5,
     padding: 2,
@@ -225,6 +224,41 @@ const styles = StyleSheet.create({
     backgroundColor: "#fdb81e",
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
+  },
+  historyHeader: {
+    height: "20%",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#046b99",
+    borderWidth: 2,
+    borderColor: "#fdb81e",
+  },
+  listItem: {
+    flexDirection: "row",
+    marginVertical: 10,
+    padding: 10,
+    borderBottomWidth: 3,
+    borderBottomColor: "#fdb81e",
+    backgroundColor: "#046b99",
+  },
+  listName: {
+    flex: 0.5,
+    alignItems: "flex-start",
+    textAlign: "center",
+    color: "white",
+    fontSize: 15,
+    fontFamily: "Kohinoor Telugu",
+    fontWeight: "bold",
+  },
+  listID: {
+    flex: 0.5,
+    alignItems: "flex-end",
+    textAlign: "center",
+    color: "white",
+    fontSize: 15,
+    fontFamily: "Kohinoor Telugu",
+    fontWeight: "bold",
   },
 });
 

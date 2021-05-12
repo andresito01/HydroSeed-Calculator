@@ -8,43 +8,98 @@ import {
   FlatList,
 } from "react-native";
 import { styles } from "../styles/styles";
+import Outputs from "../components/Outputs";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { Alert } from "react-native";
+import Swipeout from "react-native-swipeout";
 
-function HistoryScreen({ outputs, userInputs }) {
-  const DATA = [
+const HistoryScreen = ({ outputs, userInputs }) => {
+  let PROJECTS = [
     {
-      id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-      title: "First Item",
+      id: 1,
+      projectID: 1,
+      projectName: "project1",
     },
     {
-      id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-      title: "Second Item",
-    },
-    {
-      id: "58694a0f-3da1-471f-bd96-145571e29d72",
-      title: "Third Item",
+      id: 2,
+      projectID: 2,
+      projectName: "project2",
     },
   ];
 
-  const Item = ({ title }) => (
-    <View style={{ borderWidth: 3, borderColor: "blue", margin: 5 }}>
-      <Text>{title}</Text>
-    </View>
+  const Item = ({ id, projectID, projectName }) => {
+    const handlePress = (id) => {
+      const project = PROJECTS.find((proj) => {
+        return proj.id === id;
+      });
+
+      Alert.alert(
+        "Project Details",
+        `Project : ${project.projectName} \n Project ID: ${project.projectID}`
+      );
+    };
+
+    const deleteProject = (id) => {
+      const project = PROJECTS.find((proj) => {
+        return proj.id === id;
+      });
+
+      PROJECTS = PROJECTS.filter((proj) => {
+        return proj.id !== project.id;
+      });
+    };
+    /*
+    const activeRowKey = null;
+
+    const swipeSettings = {
+      autoClose: true,
+      onClose: (secId, rowId, direction) => {},
+      onOpen: (secId, rowId, direction) => {},
+      right: [
+        {
+          onPress: () => {},
+          text: "Delete",
+          type: "delete",
+        },
+      ],
+      rowId: index,
+      sectionId: 1,
+    };
+*/
+    return (
+      <Swipeout {...swipeSettings}>
+        <TouchableOpacity
+          onLongPress={() => deleteProject(id)}
+          onPress={() => handlePress(id)}
+          style={styles.listItem}
+        >
+          <Text style={styles.listName}>{projectName}</Text>
+          <Text style={styles.listID}>{projectID}</Text>
+        </TouchableOpacity>
+      </Swipeout>
+    );
+  };
+
+  const renderItem = ({ item }) => (
+    <Item
+      id={item.id}
+      projectID={item.projectID}
+      projectName={item.projectName}
+    />
   );
 
-  const renderItem = ({ item }) => <Item title={item.title} />;
-
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.historyHeader}>
         <Text style={styles.headerLabel}>Calculation History</Text>
       </View>
       <FlatList
-        data={DATA}
+        data={PROJECTS}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
       />
     </SafeAreaView>
   );
-}
+};
 
 export default HistoryScreen;
