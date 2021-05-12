@@ -11,7 +11,6 @@ import { styles } from "../styles/styles";
 import Outputs from "../components/Outputs";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Alert } from "react-native";
-import Swipeout from "react-native-swipeout";
 
 const HistoryScreen = ({ outputs, userInputs }) => {
   let PROJECTS = [
@@ -39,6 +38,20 @@ const HistoryScreen = ({ outputs, userInputs }) => {
       );
     };
 
+    const addProject = () => {
+      const newID = userInputs.projectID;
+      const newProjectName = userInputs.projectName;
+      if (newID && newProjectName) {
+        PROJECTS.push({
+          id: PROJECTS[PROJECTS.length - 1].id + 1,
+          id: newID,
+          Name: newProjectName,
+        });
+      } else {
+        Alert.alert("Error", "Fields Must Not Be Empty!");
+      }
+    };
+
     const deleteProject = (id) => {
       const project = PROJECTS.find((proj) => {
         return proj.id === id;
@@ -48,35 +61,16 @@ const HistoryScreen = ({ outputs, userInputs }) => {
         return proj.id !== project.id;
       });
     };
-    /*
-    const activeRowKey = null;
 
-    const swipeSettings = {
-      autoClose: true,
-      onClose: (secId, rowId, direction) => {},
-      onOpen: (secId, rowId, direction) => {},
-      right: [
-        {
-          onPress: () => {},
-          text: "Delete",
-          type: "delete",
-        },
-      ],
-      rowId: index,
-      sectionId: 1,
-    };
-*/
     return (
-      <Swipeout {...swipeSettings}>
-        <TouchableOpacity
-          onLongPress={() => deleteProject(id)}
-          onPress={() => handlePress(id)}
-          style={styles.listItem}
-        >
-          <Text style={styles.listName}>{projectName}</Text>
-          <Text style={styles.listID}>{projectID}</Text>
-        </TouchableOpacity>
-      </Swipeout>
+      <TouchableOpacity
+        onLongPress={() => deleteProject(id)}
+        onPress={() => handlePress(id)}
+        style={styles.listItem}
+      >
+        <Text style={styles.listName}>{projectName}</Text>
+        <Text style={styles.listID}>{projectID}</Text>
+      </TouchableOpacity>
     );
   };
 

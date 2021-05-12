@@ -63,12 +63,16 @@ const CalculatorScreen = ({
                   </Text>
                   <View style={styles.inForm}>
                     <TextInput
-                      name="projectId"
+                      name="projectName"
                       keyboardAppearance="dark"
                       keyboardType="default"
                       placeholder="Input Project Name"
                       placeholderTextColor="#787878"
                       style={styles.textInputContainer3}
+                      value={userInputs.projectName}
+                      onChangeText={(val) =>
+                        updateInputs({ ...userInputs, projectName: val })
+                      }
                     />
                   </View>
                 </View>
@@ -78,17 +82,21 @@ const CalculatorScreen = ({
                   </Text>
                   <View style={styles.inForm}>
                     <TextInput
-                      name="projectId"
+                      name="projectID"
                       keyboardAppearance="dark"
                       keyboardType="default"
                       placeholder="##-******"
                       placeholderTextColor="#787878"
                       style={styles.textInputContainer3}
+                      value={userInputs.projectID}
+                      onChangeText={(val) =>
+                        updateInputs({ ...userInputs, projectID: val })
+                      }
                     />
                   </View>
                 </View>
               </View>
-              <Pressable
+              <TouchableOpacity
                 onPress={() => setShowModal(false)}
                 style={styles.modalSaveBtn}
                 android_ripple={{ color: "white" }}
@@ -96,7 +104,7 @@ const CalculatorScreen = ({
                 <Text style={styles.headerLabel}>
                   Click To Save Project In History
                 </Text>
-              </Pressable>
+              </TouchableOpacity>
             </View>
           </View>
         </Modal>
