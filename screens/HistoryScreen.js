@@ -16,7 +16,7 @@ import {
   displayProjectDetails,
   deleteProject,
 } from "../components/SavedProjectListMethods";
-
+import DisplayProjectModal from "../components/DisplayProjectModal";
 const HistoryScreen = ({
   projectList,
   setProjectList,
@@ -24,10 +24,18 @@ const HistoryScreen = ({
   setInputs,
   outputs,
 }) => {
+  const [showDisplayModal, setShowDisplayModal] = useState(false);
   const Item = ({ id, projectID, projectName }) => {
     return (
       <TouchableOpacity
-        onPress={() => displayProjectDetails(id, projectList)}
+        onPress={() =>
+          displayProjectDetails(
+            id,
+            projectList,
+            showDisplayModal,
+            setShowDisplayModal
+          )
+        }
         onLongPress={() => deleteProject(id, projectList, setProjectList)}
         style={styles.listItem}
       >
@@ -45,12 +53,18 @@ const HistoryScreen = ({
     />
   );
 
-  console.log(projectList);
+  //console.log(projectList); * This flatlist is rerendering on every interaction throughout the app which is very bad for performance
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, marginRight: 5, marginLeft: 5 }}>
       <View style={styles.historyHeader}>
         <Text style={styles.headerLabel}>Calculation History</Text>
       </View>
+      {/* <DisplayProjectModal
+        id={id}
+        showDisplayModal={showDisplayModal}
+        setShowDisplayModal={setShowDisplayModal}
+        projectList={projectList}
+      /> */}
       <FlatList
         data={projectList}
         //extraData={projectList}

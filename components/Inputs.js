@@ -3,6 +3,7 @@ import { styles } from "../styles/styles";
 import { Text, View, TextInput } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import Buttons from "./Buttons";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const Inputs = ({
   inputs,
@@ -10,9 +11,9 @@ const Inputs = ({
   outputs,
   setOutputs,
   setShowSaveModal,
+  unit,
+  setUnit,
 }) => {
-  // This reset method resets the state however, the text fields are not clearing
-
   return (
     <View style={styles.inputsContainer}>
       <View style={styles.inputContainer}>
@@ -34,8 +35,7 @@ const Inputs = ({
               value={inputs.projectSize}
               onChangeText={(val) => setInputs({ ...inputs, projectSize: val })}
             />
-
-            <Text style={styles.label}>sq. ft</Text>
+            <Text style={styles.label}>{unit}</Text>
           </View>
         </View>
 
@@ -141,7 +141,7 @@ const Inputs = ({
                 setInputs({ ...inputs, compostAppArea: val })
               }
             />
-            <Text style={styles.label}>sq. ft.</Text>
+            <Text style={styles.label}>{unit}</Text>
           </View>
         </View>
 
@@ -170,6 +170,8 @@ const Inputs = ({
           outputs={outputs}
           setOutputs={setOutputs}
           setShowSaveModal={setShowSaveModal}
+          unit={unit}
+          setUnit={setUnit}
         />
       </View>
     </View>

@@ -80,6 +80,7 @@ const SaveProjectModal = ({
                     setProjectList
                   );
                   setShowSaveModal(false);
+                  setInputs({ ...inputs, projectName: "", projectID: "" });
                 } else {
                   Alert.alert(
                     `Error:`,
@@ -87,7 +88,7 @@ const SaveProjectModal = ({
                   );
                 }
               }}
-              style={styles.modalSaveBtn}
+              style={styles.modalBtn1}
               android_ripple={{ color: "white" }}
             >
               <Text style={styles.headerLabel}>Save Project</Text>
@@ -96,8 +97,9 @@ const SaveProjectModal = ({
             <TouchableOpacity
               onPress={() => {
                 setShowSaveModal(false);
+                setInputs({ ...inputs, projectName: "", projectID: "" });
               }}
-              style={styles.modalCloseBtn}
+              style={styles.modalBtn2}
               android_ripple={{ color: "white" }}
             >
               <Text style={styles.headerLabel}>Close</Text>

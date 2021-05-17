@@ -21,6 +21,7 @@ const CalculatorScreen = ({
   projectList,
   setProjectList,
 }) => {
+  const [unit, setUnit] = useState("sq. ft");
   const [showSaveModal, setShowSaveModal] = useState(false);
   return (
     <TouchableWithoutFeedback
@@ -31,6 +32,11 @@ const CalculatorScreen = ({
       <SafeAreaView style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.headerLabel}>HYDROSEED CALCULATOR</Text>
+          <View style={styles.appDescriptionContainer}>
+            <Text style={styles.label}>
+              Cal Trans Sponsored Hydroseed Calculator
+            </Text>
+          </View>
         </View>
         <SaveProjectModal
           inputs={inputs}
@@ -53,6 +59,8 @@ const CalculatorScreen = ({
                 outputs={outputs}
                 setOutputs={setOutputs}
                 setShowSaveModal={setShowSaveModal}
+                unit={unit}
+                setUnit={setUnit}
               />
             </View>
             <View style={styles.header3}>

@@ -8,6 +8,8 @@ const Buttons = ({
   outputs,
   setOutputs,
   setShowSaveModal,
+  unit,
+  setUnit,
 }) => {
   // FUNCTIONS FOR CLEAR FIELDS, CALCULATE AND THE SAVE CALCULATIONS BTNS WILL BE STORED HERE IN THE SAME FILE.
 
@@ -20,11 +22,18 @@ const Buttons = ({
   // Calculate results by storing the results in new local variables, create a new object called newOutputs that is a copy of the object outputs (that is a state), assign results to the new object then copy it back to the state outputs.
   const calculateResults = () => {
     var acre = 43560;
+    var newLbsOfMulch;
+    if (unit === "sq. ft") {
+      newLbsOfMulch = (
+        (Number(inputs.projectSize) / acre) *
+        Number(inputs.mulchAppRate)
+      ).toFixed(2);
+    } else if (unit === "acre") {
+      newLbsOfMulch = (
+        Number(inputs.projectSize) * Number(inputs.mulchAppRate)
+      ).toFixed(2);
+    }
 
-    var newLbsOfMulch = (
-      (Number(inputs.projectSize) / acre) *
-      Number(inputs.mulchAppRate)
-    ).toFixed(2);
     console.log("newLbsOfMulch: " + newLbsOfMulch);
 
     var newBagsOfMulch = (newLbsOfMulch / Number(inputs.weightOfMulch)).toFixed(
@@ -45,10 +54,18 @@ const Buttons = ({
 
     //var newSqFtPerTank = ;
 
-    var newCubicYardsOfCompost = (
-      (inputs.compostAppArea * (inputs.compostDepth / 12)) /
-      27
-    ).toFixed(2);
+    var newCubicYardsOfCompost;
+    if (unit === "sq. ft") {
+      newCubicYardsOfCompost = (
+        (inputs.compostAppArea * (inputs.compostDepth / 12)) /
+        27
+      ).toFixed(2);
+    } else if (unit === "acre") {
+      newCubicYardsOfCompost = (
+        (inputs.compostAppArea * acre * (inputs.compostDepth / 12)) /
+        27
+      ).toFixed(2);
+    }
 
     //var newCubicFtBagsCompost = ;
 
@@ -94,6 +111,18 @@ const Buttons = ({
         onPress={() => setShowSaveModal(true)}
       >
         <Text style={styles.btnText}> Create Project </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.btn}
+        onPress={() => {
+          if (unit === "sq. ft") {
+            setUnit("acre");
+          } else if (unit === "acre") {
+            setUnit("sq. ft");
+          }
+        }}
+      >
+        <Text style={styles.btnText}>Change Unit</Text>
       </TouchableOpacity>
     </View>
   );

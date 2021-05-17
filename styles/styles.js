@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     alignItems: "center",
     backgroundColor: "white",
-    paddingBottom: 120,
+    paddingBottom: 130,
     paddingLeft: 2,
     paddingRight: 2,
   },
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     height: "20%",
     width: "98%",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-end",
     backgroundColor: "#046b99",
     borderWidth: 2,
     borderColor: "#fdb81e",
@@ -51,8 +51,13 @@ const styles = StyleSheet.create({
     borderColor: "#fdb81e",
     marginTop: 10,
   },
+  appDescriptionContainer: {
+    width: "100%",
+    height: "50%",
+    alignItems: "center",
+    justifyContent: "flex-end",
+  },
   inputsContainer: {
-    //flex: 1,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -70,10 +75,9 @@ const styles = StyleSheet.create({
   },
   // Styling for Buttons Container
   btnContainer: {
-    marginBottom: 97,
     width: "100%",
     padding: 5,
-    flex: 4,
+    flex: 7,
     alignItems: "center",
     justifyContent: "space-evenly",
   },
@@ -176,6 +180,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "green",
     width: "100%",
+    height: "10%",
     borderRadius: 20,
     borderWidth: 2,
     borderColor: "black",
@@ -193,8 +198,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#00000099",
   },
   modalContainer: {
-    width: 300,
-    height: 300,
+    width: "80%",
+    height: "45%",
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: "#fdb81e",
+    borderRadius: 20,
+  },
+  modalContainer2: {
+    width: "80%",
+    height: "45%",
     backgroundColor: "white",
     borderWidth: 1,
     borderColor: "#fdb81e",
@@ -226,14 +239,14 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
   },
-  modalSaveBtn: {
+  modalBtn1: {
     flex: 1,
     height: "100%",
     borderRightWidth: 1,
     borderRightColor: "black",
     justifyContent: "center",
   },
-  modalCloseBtn: {
+  modalBtn2: {
     flex: 1,
     height: "100%",
     justifyContent: "center",
