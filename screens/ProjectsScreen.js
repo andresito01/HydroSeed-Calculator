@@ -17,7 +17,7 @@ import {
   deleteProject,
 } from "../components/SavedProjectListMethods";
 import DisplayProjectModal from "../components/DisplayProjectModal";
-const HistoryScreen = ({
+const ProjectScreen = ({
   projectList,
   setProjectList,
   inputs,
@@ -25,7 +25,7 @@ const HistoryScreen = ({
   outputs,
 }) => {
   const [showDisplayModal, setShowDisplayModal] = useState(false);
-  const Item = ({ id, projectID, projectName }) => {
+  const Item = ({ id, projectID, projectName, projectDate }) => {
     return (
       <TouchableOpacity
         onPress={() =>
@@ -39,6 +39,7 @@ const HistoryScreen = ({
         onLongPress={() => deleteProject(id, projectList, setProjectList)}
         style={styles.listItem}
       >
+        <Text style={styles.listDate}>{projectDate}</Text>
         <Text style={styles.listName}>{projectName}</Text>
         <Text style={styles.listID}>{projectID}</Text>
       </TouchableOpacity>
@@ -50,14 +51,21 @@ const HistoryScreen = ({
       id={item.id}
       projectID={item.projectID}
       projectName={item.projectName}
+      projectDate={item.projectDate}
     />
   );
 
   //console.log(projectList); * This flatlist is rerendering on every interaction throughout the app which is very bad for performance
   return (
-    <SafeAreaView style={{ flex: 1, marginRight: 5, marginLeft: 5 }}>
-      <View style={styles.historyHeader}>
-        <Text style={styles.headerLabel}>Calculation History</Text>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        marginRight: 5,
+        marginLeft: 5,
+      }}
+    >
+      <View style={styles.projectScreenHeader}>
+        <Text style={styles.headerLabel}>Saved Projects</Text>
       </View>
       {/* <DisplayProjectModal
         id={id}
@@ -67,6 +75,31 @@ const HistoryScreen = ({
       /> */}
       <FlatList
         data={projectList}
+        ListHeaderComponent={() => {
+          return (
+            <View style={styles.listHeader}>
+              <Text style={styles.listDateLabel}>Date Created:</Text>
+              <Text style={styles.listNameLabel}>Project Name:</Text>
+              <Text style={styles.listIDLabel}>Project ID:</Text>
+            </View>
+          );
+        }}
+        ListEmptyComponent={() => {
+          return (
+            <Text
+              style={{
+                color: "black",
+                fontSize: 30,
+                fontFamily: "Kohinoor Telugu",
+                padding: 3,
+                textAlign: "center",
+                marginTop: "50%",
+              }}
+            >
+              CURRENTLY NO SAVED PROJECTS
+            </Text>
+          );
+        }}
         //extraData={projectList}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
@@ -74,4 +107,4 @@ const HistoryScreen = ({
     </SafeAreaView>
   );
 };
-export default HistoryScreen;
+export default ProjectScreen;

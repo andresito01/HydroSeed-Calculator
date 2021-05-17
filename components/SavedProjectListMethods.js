@@ -43,12 +43,15 @@ export const addProject = (
   projectList,
   setProjectList
 ) => {
+  var projectDateCreated = new Date(),
+    date = projectDateCreated.toLocaleDateString();
   setProjectList([
     ...projectList,
     {
       id: projectList.length + 1,
       projectName: inputs.projectName,
       projectID: inputs.projectID,
+      projectDate: date,
       lbsOfMulch: outputs.lbsOfMulch,
       bagsOfMulch: outputs.bagsOfMulch,
       bagsPerTank: outputs.bagsPerTank,

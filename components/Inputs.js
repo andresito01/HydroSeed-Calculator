@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { styles } from "../styles/styles";
 import { Text, View, TextInput } from "react-native";
-import { Picker } from "@react-native-picker/picker";
 import Buttons from "./Buttons";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const Inputs = ({
   inputs,

@@ -30,7 +30,7 @@ const CalculatorScreen = ({
       }}
     >
       <SafeAreaView style={styles.container}>
-        <View style={styles.header}>
+        <View style={styles.calculatorScreenHeader}>
           <Text style={styles.headerLabel}>HYDROSEED CALCULATOR</Text>
           <View style={styles.appDescriptionContainer}>
             <Text style={styles.label}>

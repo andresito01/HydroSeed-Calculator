@@ -6,7 +6,7 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import Icon from "react-native-vector-icons/Ionicons";
 // Importing Screens
 import CalculatorScreen from "./screens/CalculatorScreen";
-import HistoryScreen from "./screens/HistoryScreen";
+import HistoryScreen from "./screens/ProjectsScreen";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -71,7 +71,7 @@ export default function App() {
         />
 
         <Tab.Screen
-          name="History"
+          name="Projects"
           children={() => (
             <HistoryScreen
               projectList={projectList}
@@ -82,7 +82,7 @@ export default function App() {
             />
           )}
           options={{
-            tabBarLabel: "History",
+            tabBarLabel: "Projects",
             tabBarIcon: ({ color }) => (
               <Icon name="server-outline" color={color} size={20} />
             ),
