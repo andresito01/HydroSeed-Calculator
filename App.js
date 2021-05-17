@@ -7,17 +7,15 @@ import Icon from "react-native-vector-icons/Ionicons";
 // Importing Screens
 import CalculatorScreen from "./screens/CalculatorScreen";
 import HistoryScreen from "./screens/HistoryScreen";
-// Importing Custom useEffect Hook
-import useDidMountEffect from "./components/useDidMountEffect";
 
 const Tab = createMaterialTopTabNavigator();
 
 export default function App() {
-  // User Inputs
+  // User Inputs Including Input fields To Save A Project
   const [inputs, setInputs] = useState([
     {
-      projectName: "",
-      projectID: "",
+      projectName: "project1",
+      projectID: "01",
       projectSize: "",
       mulchAppRate: "",
       weightOfMulch: "",
@@ -27,7 +25,7 @@ export default function App() {
       compostDepth: "",
     },
   ]);
-  // Outputs
+  // Calculation Outputs
   const [outputs, setOutputs] = useState([
     {
       lbsOfMulch: "",
@@ -41,64 +39,8 @@ export default function App() {
     },
   ]);
 
-  // Calculate results by storing the results in new local variables, create a new object called newOutputs that is a copy of the object outputs (that is a state), assign results to the new object then copy it back to the state outputs.
-  const calculateResults = () => {
-    var acre = 43560;
-
-    var newLbsOfMulch = (
-      (Number(inputs.projectSize) / acre) *
-      Number(inputs.mulchAppRate)
-    ).toFixed(2);
-    console.log("newLbsOfMulch: " + newLbsOfMulch);
-
-    var newBagsOfMulch = (newLbsOfMulch / Number(inputs.weightOfMulch)).toFixed(
-      2
-    );
-    console.log("newBagsOfMulch: " + newBagsOfMulch);
-
-    var newBagsPerTank = Number(inputs.tankCapacity) / 100;
-    console.log("newBagsPerTank: " + newBagsPerTank);
-
-    var newTankLoads = (newBagsOfMulch / newBagsPerTank).toFixed(2);
-    console.log("newTankLoads: " + newTankLoads);
-
-    var newGallonsOfWater = (
-      ((100 / inputs.mulchMixingRate) * newLbsOfMulch) /
-      8.34
-    ).toFixed(2);
-
-    //var newSqFtPerTank = ;
-
-    var newCubicYardsOfCompost = (
-      (inputs.compostAppArea * (inputs.compostDepth / 12)) /
-      27
-    ).toFixed(2);
-
-    //var newCubicFtBagsCompost = ;
-
-    const newOutputs = { ...outputs };
-    newOutputs.lbsOfMulch = String(newLbsOfMulch);
-    newOutputs.bagsOfMulch = String(newBagsOfMulch);
-    newOutputs.bagsPerTank = String(newBagsPerTank);
-    newOutputs.tankLoads = String(newTankLoads);
-    newOutputs.gallonsOfWater = String(newGallonsOfWater);
-    //newOutputs.sqftPerTank = String(newSqFtPerTank);
-    newOutputs.cubicYardsOfCompost = String(newCubicYardsOfCompost);
-    //newOutputs.cubicFtBagsCompost = String(newCubicFtBagsCompost);
-    setOutputs(newOutputs);
-  };
-
-  // Use the custom useEffect hook to log the values of ouputs after every change to outputs (this custom hook prevents being called on initial render)
-  useDidMountEffect(() => {
-    console.log("lbsOfMulch: " + outputs.lbsOfMulch);
-    console.log("bagsOfMulch: " + outputs.bagsOfMulch);
-    console.log("bagsPerTank: " + outputs.bagsPerTank);
-    console.log("tankLoads: " + outputs.tankLoads);
-    console.log("gallonsOfWater: " + outputs.gallonsOfWater);
-    //console.log("sqftPerTank: " + outputs.sqftPerTank);
-    console.log("cubicYardsOfCompost: " + outputs.cubicYardsOfCompost);
-    //console.log("cubicFtBagsCompost: " + outputs.cubicFtBagsCompost);
-  }, [outputs]);
+  // Saved Project List
+  let [projectList, setProjectList] = useState([]);
 
   return (
     <NavigationContainer>
@@ -112,11 +54,12 @@ export default function App() {
           name="Calculator"
           children={() => (
             <CalculatorScreen
-              userInputs={inputs}
-              updateInputs={setInputs}
+              inputs={inputs}
+              setInputs={setInputs}
               outputs={outputs}
               setOutputs={setOutputs}
-              calculate={calculateResults}
+              projectList={projectList}
+              setProjectList={setProjectList}
             />
           )}
           options={{
@@ -130,7 +73,13 @@ export default function App() {
         <Tab.Screen
           name="History"
           children={() => (
-            <HistoryScreen userInputs={inputs} outputs={outputs} />
+            <HistoryScreen
+              projectList={projectList}
+              setProjectList={setProjectList}
+              inputs={inputs}
+              setInputs={setInputs}
+              outputs={outputs}
+            />
           )}
           options={{
             tabBarLabel: "History",

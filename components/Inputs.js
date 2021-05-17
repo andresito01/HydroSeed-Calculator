@@ -1,26 +1,17 @@
 import React, { useState } from "react";
 import { styles } from "../styles/styles";
-import { Text, View, TextInput, TouchableOpacity } from "react-native";
+import { Text, View, TextInput } from "react-native";
 import { Picker } from "@react-native-picker/picker";
+import Buttons from "./Buttons";
 
 const Inputs = ({
-  userInputs,
-  updateInputs,
+  inputs,
+  setInputs,
   outputs,
   setOutputs,
-  calculate,
-  scrollToBottom,
-  showModal,
-  setShowModal,
+  setShowSaveModal,
 }) => {
   // This reset method resets the state however, the text fields are not clearing
-
-  const reset = () => {
-    updateInputs({});
-    setOutputs({});
-  };
-
-  const [selectedUnit, setSelectedUnit] = useState("sq. ft");
 
   return (
     <View style={styles.inputsContainer}>
@@ -40,10 +31,8 @@ const Inputs = ({
               placeholder="sq. ft."
               placeholderTextColor="#787878"
               style={styles.textInputContainer}
-              value={userInputs.projectSize}
-              onChangeText={(val) =>
-                updateInputs({ ...userInputs, projectSize: val })
-              }
+              value={inputs.projectSize}
+              onChangeText={(val) => setInputs({ ...inputs, projectSize: val })}
             />
 
             <Text style={styles.label}>sq. ft</Text>
@@ -61,9 +50,9 @@ const Inputs = ({
               placeholder="lbs/acre"
               placeholderTextColor="#787878"
               style={styles.textInputContainer}
-              value={userInputs.mulchAppRate}
+              value={inputs.mulchAppRate}
               onChangeText={(val) =>
-                updateInputs({ ...userInputs, mulchAppRate: val })
+                setInputs({ ...inputs, mulchAppRate: val })
               }
             />
             <Text style={styles.label}>lbs/acre</Text>
@@ -81,9 +70,9 @@ const Inputs = ({
               placeholder="lbs"
               placeholderTextColor="#787878"
               style={styles.textInputContainer}
-              value={userInputs.weightOfMulch}
+              value={inputs.weightOfMulch}
               onChangeText={(val) =>
-                updateInputs({ ...userInputs, weightOfMulch: val })
+                setInputs({ ...inputs, weightOfMulch: val })
               }
             />
             <Text style={styles.label}>lbs</Text>
@@ -101,9 +90,9 @@ const Inputs = ({
               placeholder="gal"
               placeholderTextColor="#787878"
               style={styles.textInputContainer}
-              value={userInputs.tankCapacity}
+              value={inputs.tankCapacity}
               onChangeText={(val) =>
-                updateInputs({ ...userInputs, tankCapacity: val })
+                setInputs({ ...inputs, tankCapacity: val })
               }
             />
             <Text style={styles.label}>gal</Text>
@@ -121,9 +110,9 @@ const Inputs = ({
               placeholder="lbs/100 gal"
               placeholderTextColor="#787878"
               style={styles.textInputContainer2}
-              value={userInputs.mulchMixingRate}
+              value={inputs.mulchMixingRate}
               onChangeText={(val) =>
-                updateInputs({ ...userInputs, mulchMixingRate: val })
+                setInputs({ ...inputs, mulchMixingRate: val })
               }
             />
             <Text style={styles.label}>lbs/100 gal</Text>
@@ -147,9 +136,9 @@ const Inputs = ({
               placeholder="sq. ft."
               placeholderTextColor="#787878"
               style={styles.textInputContainer}
-              value={userInputs.compostAppArea}
+              value={inputs.compostAppArea}
               onChangeText={(val) =>
-                updateInputs({ ...userInputs, compostAppArea: val })
+                setInputs({ ...inputs, compostAppArea: val })
               }
             />
             <Text style={styles.label}>sq. ft.</Text>
@@ -167,36 +156,21 @@ const Inputs = ({
               placeholder="inches"
               placeholderTextColor="#787878"
               style={styles.textInputContainer}
-              value={userInputs.compostDepth}
+              value={inputs.compostDepth}
               onChangeText={(val) =>
-                updateInputs({ ...userInputs, compostDepth: val })
+                setInputs({ ...inputs, compostDepth: val })
               }
             />
             <Text style={styles.label}>inches</Text>
           </View>
         </View>
-        {/* Buttons for Clear Fields, Calculate, Save Calculations */}
-        <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.btn} onPress={reset}>
-            <Text style={styles.btnText}>Clear all Fields</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => {
-              calculate();
-              //scrollToBottom();
-            }}
-          >
-            <Text style={styles.btnText}>Calculate</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => setShowModal(true)}
-          >
-            <Text style={styles.btnText}> Save Calculations </Text>
-          </TouchableOpacity>
-        </View>
-        {/*<Buttons userInputs={userInputs} updateInputs={updateInputs} />*/}
+        <Buttons
+          inputs={inputs}
+          setInputs={setInputs}
+          outputs={outputs}
+          setOutputs={setOutputs}
+          setShowSaveModal={setShowSaveModal}
+        />
       </View>
     </View>
   );

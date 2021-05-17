@@ -216,7 +216,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 5,
   },
-  modalSaveBtn: {
+  modalBtnContainer: {
+    flexDirection: "row",
     height: "20%",
     width: "100%",
     justifyContent: "center",
@@ -224,6 +225,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#fdb81e",
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
+  },
+  modalSaveBtn: {
+    flex: 1,
+    height: "100%",
+    borderRightWidth: 1,
+    borderRightColor: "black",
+    justifyContent: "center",
+  },
+  modalCloseBtn: {
+    flex: 1,
+    height: "100%",
+    justifyContent: "center",
   },
   historyHeader: {
     height: "20%",
