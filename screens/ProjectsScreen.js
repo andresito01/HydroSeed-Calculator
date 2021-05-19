@@ -25,17 +25,24 @@ const ProjectScreen = ({
   outputs,
 }) => {
   const [showDisplayModal, setShowDisplayModal] = useState(false);
+
   const Item = ({ id, projectID, projectName, projectDate }) => {
+    const ProjectDetails = () => {
+      /*  const project = projectList.find((proj) => {
+        return proj.id === id;
+      }); */
+      setShowDisplayModal(true);
+
+      /* Alert.alert(
+        `${project.projectName} Details`,
+        `ID: ${project.projectID}`,
+        `Date Created: ${project.projectDate}`,
+        `Date Created: ${project.projectDate}`
+      ); */
+    };
     return (
       <TouchableOpacity
-        onPress={() =>
-          displayProjectDetails(
-            id,
-            projectList,
-            showDisplayModal,
-            setShowDisplayModal
-          )
-        }
+        onPress={() => ProjectDetails()}
         onLongPress={() => deleteProject(id, projectList, setProjectList)}
         style={styles.listItem}
       >
@@ -72,26 +79,17 @@ const ProjectScreen = ({
         <Text style={styles.listNameLabel}>Project Name:</Text>
         <Text style={styles.listIDLabel}>Project ID:</Text>
       </View>
-      {/* <DisplayProjectModal
-        id={id}
+      <DisplayProjectModal
+        id={(item) => item.id}
         showDisplayModal={showDisplayModal}
         setShowDisplayModal={setShowDisplayModal}
         projectList={projectList}
-      /> */}
+      />
       <FlatList
         data={projectList}
         ListEmptyComponent={() => {
           return (
-            <Text
-              style={{
-                color: "black",
-                fontSize: 30,
-                fontFamily: "Kohinoor Telugu",
-                padding: 3,
-                textAlign: "center",
-                marginTop: "50%",
-              }}
-            >
+            <Text style={styles.noSavedProjectsLabel}>
               CURRENTLY NO SAVED PROJECTS
             </Text>
           );

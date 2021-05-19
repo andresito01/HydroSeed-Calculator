@@ -5,19 +5,22 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Alert } from "react-native";
 import DisplayProjectModal from "./DisplayProjectModal";
 
-export const displayProjectDetails = (
+export const displayProjectDetails = ({
   id,
   projectList,
   showDisplayModal,
-  setShowDisplayModal
-) => {
+  setShowDisplayModal,
+}) => {
   const project = projectList.find((proj) => {
     return proj.id === id;
   });
+  //setShowDisplayModal(true);
 
   Alert.alert(
     `${project.projectName} Details`,
-    `Project ID: ${project.projectID}`
+    `ID: ${project.projectID}`,
+    `Date Created: ${project.projectDate}`,
+    `Date Created: ${project.projectDate}`
   );
 };
 

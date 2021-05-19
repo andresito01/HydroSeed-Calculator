@@ -5,18 +5,18 @@ import { Text, View } from "react-native";
 const Outputs = ({ outputs }) => {
   return (
     <View style={styles.resultsContainer}>
-      <Text style={styles.label}>Total Mulch Needed for Project</Text>
       <View style={{ flexDirection: "column" }}>
+        <Text style={styles.label}>Total Mulch Needed for Project</Text>
         <Text style={styles.textOutputContainer}>
           {outputs.lbsOfMulch} lbs of mulch
         </Text>
-
         <Text style={styles.textOutputContainer}>
           {outputs.bagsOfMulch} bags
         </Text>
       </View>
-      <Text style={styles.label}>Total Tank Loads Needed for Project</Text>
+
       <View style={{ flexDirection: "column" }}>
+        <Text style={styles.label}>Total Tank Loads Needed for Project</Text>
         <Text style={styles.textOutputContainer}>
           {outputs.bagsPerTank} bags per tank
         </Text>
@@ -30,8 +30,9 @@ const Outputs = ({ outputs }) => {
           {outputs.sqftPerTank} sq. ft./tank{" "}
         </Text>
       </View>
-      <Text style={styles.label}>Total Compost Needed for Project</Text>
+
       <View style={{ flexDirection: "column" }}>
+        <Text style={styles.label}>Total Compost Needed for Project</Text>
         <Text style={styles.textOutputContainer}>
           {outputs.cubicYardsOfCompost} cubic yards of compost
         </Text>

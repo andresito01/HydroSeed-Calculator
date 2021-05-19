@@ -13,11 +13,12 @@ import { addProject } from "./SavedProjectListMethods";
 import { Alert } from "react-native";
 
 const SaveProjectModal = ({
+  id,
+  showSaveModal,
+  setShowSaveModal,
   inputs,
   setInputs,
   outputs,
-  showSaveModal,
-  setShowSaveModal,
   projectList,
   setProjectList,
 }) => {
@@ -30,7 +31,7 @@ const SaveProjectModal = ({
       hardwareAccelerated
     >
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={styles.modalBackground}>
+        <View style={styles.modalBackground2}>
           <View style={styles.modalContainer}>
             <View style={styles.modalTitle}>
               <Text style={styles.headerLabel}>Create and Save Project</Text>
@@ -40,9 +41,7 @@ const SaveProjectModal = ({
             </View>
             <View style={styles.modalBody}>
               <View style={styles.forms}>
-                <Text style={{ color: "black", fontSize: 20 }}>
-                  Project Name:
-                </Text>
+                <Text style={styles.modalLabel}>Project Name:</Text>
                 <View style={styles.inForm}>
                   <TextInput
                     name="projectName"
@@ -59,9 +58,7 @@ const SaveProjectModal = ({
                 </View>
               </View>
               <View style={styles.forms}>
-                <Text style={{ color: "black", fontSize: 20 }}>
-                  Project ID:
-                </Text>
+                <Text style={styles.modalLabel}>Project ID:</Text>
                 <View style={styles.inForm}>
                   <TextInput
                     name="projectID"

@@ -24,69 +24,54 @@ const DisplayProjectModal = ({
       animationType="slide"
       hardwareAccelerated
     >
-      <View style={styles.modalBackground}>
+      <View style={styles.modalBackground2}>
         <View style={styles.modalContainer2}>
-          <View style={styles.modalTitle}>
+          <View style={styles.modalTitle2}>
             <Text style={styles.headerLabel}>
-              {project.projectName} Details
+              {projectList.projectName} Details
             </Text>
-            <Text style={styles.headerLabel}>{project.projectID}</Text>
+            <Text style={styles.headerLabel}>ID:</Text>
           </View>
 
-          <View style={styles.modalBody}>
-            <View style={styles.resultsContainer}>
+          <View style={styles.modalBody2}>
+            <View style={styles.resultsContainer2}>
               <Text style={styles.label}>Total Mulch Needed for Project</Text>
               <View style={{ flexDirection: "column" }}>
-                <Text style={styles.textOutputContainer}>
-                  {project.lbsOfMulch} lbs of mulch
-                </Text>
-
-                <Text style={styles.textOutputContainer}>
-                  {project.bagsOfMulch} bags
-                </Text>
+                <Text style={styles.textOutputContainer2}>lbs of mulch</Text>
+                <Text style={styles.textOutputContainer2}>bags</Text>
               </View>
               <Text style={styles.label}>
                 Total Tank Loads Needed for Project
               </Text>
               <View style={{ flexDirection: "column" }}>
-                <Text style={styles.textOutputContainer}>
-                  {project.bagsPerTank} bags per tank
+                <Text style={styles.textOutputContainer2}>bags per tank</Text>
+                <Text style={styles.textOutputContainer2}>tank loads</Text>
+                <Text style={styles.textOutputContainer2}>
+                  gallons of water
                 </Text>
-                <Text style={styles.textOutputContainer}>
-                  {project.tankLoads} tank loads
-                </Text>
-                <Text style={styles.textOutputContainer}>
-                  {project.gallonsOfWater} gallons of water
-                </Text>
-                <Text style={styles.textOutputContainer}>
-                  {project.sqftPerTank} sq. ft./tank
-                </Text>
+                <Text style={styles.textOutputContainer2}>sq. ft./tank</Text>
               </View>
               <Text style={styles.label}>Total Compost Needed for Project</Text>
               <View style={{ flexDirection: "column" }}>
-                <Text style={styles.textOutputContainer}>
-                  {project.cubicYardsOfCompost} cubic yards of compost
+                <Text style={styles.textOutputContainer2}>
+                  cubic yards of compost
                 </Text>
-                <Text style={styles.textOutputContainer}>
-                  {project.cubicFtBagsCompost} cubic foot bags
-                </Text>
+                <Text style={styles.textOutputContainer2}>cubic foot bags</Text>
               </View>
             </View>
           </View>
 
-          <View style={styles.modalBtnContainer}>
+          <View style={styles.modalBtnContainer2}>
             <TouchableOpacity
               onPress={() => {}}
-              style={styles.modalBtn1}
+              style={styles.modalBtn2}
               android_ripple={{ color: "white" }}
             >
               <Text style={styles.headerLabel}>Share Project</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => {
-                setShowDisplayModal(false);
-              }}
+              onPress={() => setShowDisplayModal(false)}
               style={styles.modalBtn2}
               android_ripple={{ color: "white" }}
             >
