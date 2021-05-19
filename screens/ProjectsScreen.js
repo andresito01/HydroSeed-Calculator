@@ -67,6 +67,11 @@ const ProjectScreen = ({
       <View style={styles.projectScreenHeader}>
         <Text style={styles.headerLabel}>Saved Projects</Text>
       </View>
+      <View style={styles.listHeader}>
+        <Text style={styles.listDateLabel}>Date Created:</Text>
+        <Text style={styles.listNameLabel}>Project Name:</Text>
+        <Text style={styles.listIDLabel}>Project ID:</Text>
+      </View>
       {/* <DisplayProjectModal
         id={id}
         showDisplayModal={showDisplayModal}
@@ -75,15 +80,6 @@ const ProjectScreen = ({
       /> */}
       <FlatList
         data={projectList}
-        ListHeaderComponent={() => {
-          return (
-            <View style={styles.listHeader}>
-              <Text style={styles.listDateLabel}>Date Created:</Text>
-              <Text style={styles.listNameLabel}>Project Name:</Text>
-              <Text style={styles.listIDLabel}>Project ID:</Text>
-            </View>
-          );
-        }}
         ListEmptyComponent={() => {
           return (
             <Text

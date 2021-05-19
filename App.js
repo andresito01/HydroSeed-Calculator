@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 // Imports for Navigation
 import { NavigationContainer } from "@react-navigation/native";

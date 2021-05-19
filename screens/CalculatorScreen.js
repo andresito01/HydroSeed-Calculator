@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { styles } from "../styles/styles";
 import {
   Text,
@@ -8,6 +8,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   ScrollView,
+  StatusBar,
 } from "react-native";
 import Inputs from "../components/Inputs";
 import Outputs from "../components/Outputs";
@@ -23,6 +24,7 @@ const CalculatorScreen = ({
 }) => {
   const [unit, setUnit] = useState("sq. ft");
   const [showSaveModal, setShowSaveModal] = useState(false);
+
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -30,6 +32,7 @@ const CalculatorScreen = ({
       }}
     >
       <SafeAreaView style={styles.container}>
+        <StatusBar barStyle="dark-content" />
         <View style={styles.calculatorScreenHeader}>
           <Text style={styles.headerLabel}>HYDROSEED CALCULATOR</Text>
           <View style={styles.appDescriptionContainer}>
