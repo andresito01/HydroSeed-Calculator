@@ -96,6 +96,7 @@ const SaveProjectModal = ({
 
     let length = districtNums.length;
     let count = 0;
+    console.log(projectID.substring(0, 2));
     while (length--) {
       if (projectID.substring(0, 2) === districtNums[length]) {
         count++;
