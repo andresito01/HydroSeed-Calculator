@@ -10,10 +10,8 @@ import {
   Modal,
 } from "react-native";
 import { addProject } from "./SavedProjectListMethods";
-import { Alert } from "react-native";
 
 const SaveProjectModal = ({
-  id,
   showSaveModal,
   setShowSaveModal,
   inputs,
@@ -22,6 +20,85 @@ const SaveProjectModal = ({
   projectList,
   setProjectList,
 }) => {
+  // Create Project Form Validation
+  const [projectNameError, setProjectNameError] = useState("");
+  const [projectIDError, setProjectIDError] = useState("");
+
+  // First two digits of Project ID must contain one of the following, which are district numbers
+  let districtNums = [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+  ];
+
+  const checkIfInput = (name, id) => {
+    // Check if Project Name and ID contains any user input if not return false
+    if (!name) {
+      setProjectNameError("Field is required");
+    }
+    if (!id) {
+      setProjectIDError("Field is required");
+    }
+
+    if (!name || !id) {
+      return false;
+    }
+
+    // return true if no error
+    return true;
+  };
+
+  const checkNameCharLength = (name) => {
+    // Check if user input has the valid amount of characters for a Project Name
+    let projectNameLength = name.length;
+    if (projectNameLength > 24) {
+      setProjectNameError("Name cannot surpass 24 characters");
+      return false;
+    }
+
+    // return true if no error
+    return true;
+  };
+
+  const checkIdFirstTwoDigits = (id) => {
+    // Check if user input has the valid input being first two characters in the Project ID must contain any district number from the districtNums array
+    length = districtNums.length;
+    while (length--) {
+      if (projectID.substring(0, 1) === districtNums[length]) {
+        return true;
+      }
+    }
+    setProjectIDError(
+      "Project ID's first two digits must contain a district number"
+    );
+  };
+
+  let validate = () => {
+    let projectName = inputs.projectName;
+    let projectID = inputs.projectID;
+    setProjectNameError("");
+    setProjectIDError("");
+    // check if any errors occur, if they do return false
+    if (
+      !checkIfInput(projectName, projectID) ||
+      !checkNameCharLength(projectName)
+    ) {
+      return false;
+    }
+
+    // return true if there are no errors in user input
+    return true;
+  };
+
   return (
     <Modal
       visible={showSaveModal}
@@ -31,8 +108,8 @@ const SaveProjectModal = ({
       hardwareAccelerated
     >
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={styles.modalBackground2}>
-          <View style={styles.modalContainer}>
+        <View style={styles.saveModalBackground}>
+          <View style={styles.saveModalContainer}>
             <View style={styles.modalTitle}>
               <Text style={styles.headerLabel}>Create and Save Project</Text>
               <Text style={styles.label}>
@@ -42,7 +119,7 @@ const SaveProjectModal = ({
             <View style={styles.modalBody}>
               <View style={styles.forms}>
                 <Text style={styles.modalLabel}>Project Name:</Text>
-                <View style={styles.inForm}>
+                <View style={styles.inForm2}>
                   <TextInput
                     name="projectName"
                     keyboardAppearance="dark"
@@ -55,11 +132,12 @@ const SaveProjectModal = ({
                       setInputs({ ...inputs, projectName: val })
                     }
                   />
+                  <Text style={styles.errorMsg}>{projectNameError}</Text>
                 </View>
               </View>
               <View style={styles.forms}>
                 <Text style={styles.modalLabel}>Project ID:</Text>
-                <View style={styles.inForm}>
+                <View style={styles.inForm2}>
                   <TextInput
                     name="projectID"
                     keyboardAppearance="dark"
@@ -72,6 +150,7 @@ const SaveProjectModal = ({
                       setInputs({ ...inputs, projectID: val })
                     }
                   />
+                  <Text style={styles.errorMsg}>{projectIDError}</Text>
                 </View>
               </View>
             </View>
@@ -79,7 +158,7 @@ const SaveProjectModal = ({
             <View style={styles.modalBtnContainer}>
               <TouchableOpacity
                 onPress={() => {
-                  if (inputs.projectName && inputs.projectID) {
+                  if (validate()) {
                     addProject(
                       inputs,
                       setInputs,
@@ -89,14 +168,9 @@ const SaveProjectModal = ({
                     );
                     setShowSaveModal(false);
                     setInputs({ ...inputs, projectName: "", projectID: "" });
-                  } else {
-                    Alert.alert(
-                      `Error:`,
-                      `Fields for project name and id must be filled in order to save project.`
-                    );
                   }
                 }}
-                style={styles.modalBtn1}
+                style={styles.modalSaveBtn}
                 android_ripple={{ color: "white" }}
               >
                 <Text style={styles.headerLabel}>Save Project</Text>
@@ -106,8 +180,10 @@ const SaveProjectModal = ({
                 onPress={() => {
                   setShowSaveModal(false);
                   setInputs({ ...inputs, projectName: "", projectID: "" });
+                  setProjectNameError("");
+                  setProjectIDError("");
                 }}
-                style={styles.modalBtn2}
+                style={styles.modalCloseBtn}
                 android_ripple={{ color: "white" }}
               >
                 <Text style={styles.headerLabel}>Close</Text>

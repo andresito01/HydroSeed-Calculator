@@ -1,29 +1,4 @@
-import React from "react";
-import { Text } from "react-native";
-import { styles } from "../styles/styles";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { Alert } from "react-native";
-import DisplayProjectModal from "./DisplayProjectModal";
-
-export const displayProjectDetails = ({
-  id,
-  projectList,
-  showDisplayModal,
-  setShowDisplayModal,
-}) => {
-  const project = projectList.find((proj) => {
-    return proj.id === id;
-  });
-  //setShowDisplayModal(true);
-
-  Alert.alert(
-    `${project.projectName} Details`,
-    `ID: ${project.projectID}`,
-    `Date Created: ${project.projectDate}`,
-    `Date Created: ${project.projectDate}`
-  );
-};
-
+// Method to delete a project
 export const deleteProject = (id, projectList, setProjectList) => {
   const project = projectList.find((proj) => {
     return proj.id === id;
@@ -39,6 +14,7 @@ export const deleteProject = (id, projectList, setProjectList) => {
   );
 };
 
+// Method to save a project
 export const addProject = (
   inputs,
   setInputs,

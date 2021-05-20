@@ -24,47 +24,43 @@ const Buttons = ({
     var acre = 43560;
     var newLbsOfMulch;
     if (unit === "sq. ft") {
-      newLbsOfMulch = (
-        (Number(inputs.projectSize) / acre) *
-        Number(inputs.mulchAppRate)
-      ).toFixed(2);
+      newLbsOfMulch = Math.ceil(
+        (Number(inputs.projectSize) / acre) * Number(inputs.mulchAppRate)
+      );
     } else if (unit === "acre") {
-      newLbsOfMulch = (
+      newLbsOfMulch = Math.ceil(
         Number(inputs.projectSize) * Number(inputs.mulchAppRate)
-      ).toFixed(2);
+      );
     }
 
     console.log("newLbsOfMulch: " + newLbsOfMulch);
 
-    var newBagsOfMulch = (newLbsOfMulch / Number(inputs.weightOfMulch)).toFixed(
-      2
+    var newBagsOfMulch = Math.ceil(
+      newLbsOfMulch / Number(inputs.weightOfMulch)
     );
     console.log("newBagsOfMulch: " + newBagsOfMulch);
 
-    var newBagsPerTank = Number(inputs.tankCapacity) / 100;
+    var newBagsPerTank = Math.ceil(Number(inputs.tankCapacity) / 100);
     console.log("newBagsPerTank: " + newBagsPerTank);
 
-    var newTankLoads = (newBagsOfMulch / newBagsPerTank).toFixed(2);
+    var newTankLoads = Math.ceil(newBagsOfMulch / newBagsPerTank);
     console.log("newTankLoads: " + newTankLoads);
 
-    var newGallonsOfWater = (
-      ((100 / inputs.mulchMixingRate) * newLbsOfMulch) /
-      8.34
-    ).toFixed(2);
+    var newGallonsOfWater = Math.ceil(
+      ((100 / inputs.mulchMixingRate) * newLbsOfMulch) / 8.34
+    );
 
     //var newSqFtPerTank = ;
 
     var newCubicYardsOfCompost;
     if (unit === "sq. ft") {
-      newCubicYardsOfCompost = (
-        (inputs.compostAppArea * (inputs.compostDepth / 12)) /
-        27
-      ).toFixed(2);
+      newCubicYardsOfCompost = Math.ceil(
+        (inputs.compostAppArea * (inputs.compostDepth / 12)) / 27
+      );
     } else if (unit === "acre") {
-      newCubicYardsOfCompost = (
-        (inputs.compostAppArea * acre * (inputs.compostDepth / 12)) /
-        27
-      ).toFixed(2);
+      newCubicYardsOfCompost = Math.ceil(
+        (inputs.compostAppArea * acre * (inputs.compostDepth / 12)) / 27
+      );
     }
 
     //var newCubicFtBagsCompost = ;

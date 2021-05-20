@@ -1,6 +1,8 @@
 import { StyleSheet } from "react-native";
 import { ScaledSheet } from "react-native-size-matters";
 const styles = ScaledSheet.create({
+  // STYLING FOR SCREEN AND SCROLLVIEW CONTAINERS
+
   scrollView: {
     alignSelf: "center",
     width: "100%",
@@ -10,7 +12,7 @@ const styles = ScaledSheet.create({
   contentContainer: {
     flexGrow: 1,
     alignItems: "center",
-    backgroundColor: "white",
+    backgroundColor: "black",
     paddingLeft: 2,
     paddingRight: 2,
     paddingBottom: 10,
@@ -19,9 +21,18 @@ const styles = ScaledSheet.create({
     flexDirection: "column",
     flexWrap: "wrap",
     justifyContent: "center",
-    backgroundColor: "white",
+    backgroundColor: "black",
     alignItems: "center",
   },
+  container2: {
+    flex: 1,
+    backgroundColor: "black",
+  },
+
+  // END OF STYLING FOR SCREEN AND SCROLLVIEW CONTAINERS
+
+  // STYLING FOR HEADERS, HEADER TEXTS, SMALLER CONTAINERS THAT AREN'T FULL SCREENS ETC
+
   calculatorScreenHeader: {
     height: "16%",
     width: "98%",
@@ -50,6 +61,13 @@ const styles = ScaledSheet.create({
     borderColor: "#fdb81e",
     marginTop: "5@s",
   },
+  headerLabel: {
+    color: "white",
+    fontSize: "20@s",
+    fontFamily: "Kohinoor Telugu",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
   appDescriptionContainer: {
     width: "100%",
     height: "40%",
@@ -61,7 +79,6 @@ const styles = ScaledSheet.create({
     alignItems: "center",
     flex: 1,
   },
-  // Styling for User Inputs Section
   inputContainer: {
     flex: 1,
     margin: "2@s",
@@ -71,7 +88,6 @@ const styles = ScaledSheet.create({
     borderColor: "#fdb81e",
     borderWidth: "2@s",
   },
-  // Styling for Calculation Results container
   resultsContainer: {
     flex: 1,
     width: "100%",
@@ -86,9 +102,8 @@ const styles = ScaledSheet.create({
   },
   resultsContainer2: {
     flex: 1,
+    paddingBottom: "10@ms",
     width: "100%",
-    marginTop: "5@ms",
-    padding: 2,
     alignItems: "stretch",
     justifyContent: "space-evenly",
     borderWidth: 2,
@@ -104,14 +119,11 @@ const styles = ScaledSheet.create({
     textAlign: "center",
     fontSize: "12@ms",
   },
-  headerLabel: {
-    color: "white",
-    fontSize: "20@s",
-    fontFamily: "Kohinoor Telugu",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  // Styling for each label plus text input
+
+  // END OF STYLING FOR HEADERS, HEADER TEXTS, SMALLER CONTAINERS THAT AREN'T FULL SCREENS ETC
+
+  // STYLING FOR FORMS AND ITS FORMAT CONTAINING A LABEL AND A TEXT INPUT
+
   forms: {
     flex: 1,
     width: "100%",
@@ -133,9 +145,13 @@ const styles = ScaledSheet.create({
     width: "100%",
     padding: 2,
     alignItems: "center",
-    flexDirection: "row",
+    flexDirection: "column",
   },
-  // Styling for TextInput component
+
+  // END OF STYLING FOR FORMS AND ITS FORMAT CONTAINING A LABEL AND A TEXT INPUT
+
+  // STYLING FOR TEXT INPUT/OUTPUT CONTAINERS
+
   textInputContainer: {
     borderColor: "black",
     borderWidth: 1,
@@ -147,7 +163,6 @@ const styles = ScaledSheet.create({
     marginRight: "2@s",
     fontSize: "15@s",
   },
-  // Unlike textInputContainer, the margin is modified for mulch mixing rate text input
   textInputContainer2: {
     borderColor: "black",
     borderWidth: 1,
@@ -158,7 +173,6 @@ const styles = ScaledSheet.create({
     backgroundColor: "white",
     fontSize: "15@s",
   },
-  // styling for the text inputs in the save modal
   textInputContainer3: {
     borderColor: "black",
     borderWidth: 1,
@@ -172,7 +186,6 @@ const styles = ScaledSheet.create({
   textOutputContainer: {
     borderColor: "black",
     borderWidth: 1,
-    //height: 20,
     flex: 1,
     paddingLeft: 10,
     backgroundColor: "white",
@@ -188,7 +201,11 @@ const styles = ScaledSheet.create({
     fontSize: "15@s",
     lineHeight: "30@s",
   },
+
+  // END OF TEXT INPUT/OUTPUT STYLINGS
+
   // Styling for Buttons Container
+
   btnContainer: {
     width: "100%",
     padding: 5,
@@ -208,18 +225,6 @@ const styles = ScaledSheet.create({
     borderWidth: 2,
     borderColor: "black",
   },
-  btn2: {
-    flex: 1,
-    margin: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "green",
-    width: "100%",
-    height: "10%",
-    borderRadius: 20,
-    borderWidth: 2,
-    borderColor: "black",
-  },
   btnText: {
     color: "white",
     fontWeight: "bold",
@@ -227,19 +232,18 @@ const styles = ScaledSheet.create({
     textAlign: "center",
     fontSize: "15@s",
   },
-  modalBackground: {
+
+  // END OF BTN STYLINGS
+
+  // SAVE MODAL STYLINGS
+
+  saveModalBackground: {
     flex: 1,
     alignItems: "center",
     backgroundColor: "#00000099",
     paddingTop: "90@ms",
   },
-  modalBackground2: {
-    flex: 1,
-    alignItems: "center",
-    backgroundColor: "#00000099",
-    paddingTop: "90@ms",
-  },
-  modalContainer: {
+  saveModalContainer: {
     width: "80%",
     height: "60%",
     backgroundColor: "white",
@@ -247,26 +251,8 @@ const styles = ScaledSheet.create({
     borderColor: "#fdb81e",
     borderRadius: 20,
   },
-  modalContainer2: {
-    width: "80%",
-    height: "90%",
-    backgroundColor: "white",
-    borderWidth: 1,
-    borderColor: "#fdb81e",
-    borderRadius: 20,
-  },
   modalTitle: {
     height: "20%",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#046b99",
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
-    padding: "6@s",
-  },
-  modalTitle2: {
-    height: "15%",
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
@@ -286,13 +272,6 @@ const styles = ScaledSheet.create({
     alignItems: "center",
     padding: "5@s",
   },
-  modalBody2: {
-    flex: 1,
-    width: "100%",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    padding: "5@s",
-  },
   modalBtnContainer: {
     flexDirection: "row",
     height: "20%",
@@ -303,31 +282,24 @@ const styles = ScaledSheet.create({
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
   },
-  modalBtnContainer2: {
-    flexDirection: "row",
-    height: "8%",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fdb81e",
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-  },
-  modalBtn1: {
+  modalSaveBtn: {
     flex: 1,
     height: "100%",
     borderRightWidth: 1,
     borderRightColor: "black",
     justifyContent: "center",
   },
-  modalBtn2: {
+  modalCloseBtn: {
     flex: 1,
     height: "100%",
     justifyContent: "center",
   },
+
+  // END OF SAVE MODAL STYLINGS
+
   projectScreenHeader: {
     height: "16%",
-    width: "100%",
+    width: "99%",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#046b99",
@@ -342,6 +314,7 @@ const styles = ScaledSheet.create({
     borderBottomColor: "#fdb81e",
     backgroundColor: "#046b99",
     height: "30@s",
+    width: "99%",
   },
   listDateLabel: {
     flex: 0.5,
@@ -371,9 +344,11 @@ const styles = ScaledSheet.create({
     fontWeight: "bold",
   },
   listItem: {
+    width: "99%",
     flexDirection: "row",
-    marginVertical: "10@s",
-    padding: "10@s",
+    padding: "1@s",
+    marginTop: "10@s",
+    marginBottom: "10@s",
     borderBottomWidth: "2@s",
     borderBottomColor: "#fdb81e",
     backgroundColor: "#046b99",
@@ -406,11 +381,15 @@ const styles = ScaledSheet.create({
     fontWeight: "bold",
   },
   noSavedProjectsLabel: {
-    color: "black",
+    color: "white",
     fontSize: "30@s",
     fontFamily: "Kohinoor Telugu",
     textAlign: "center",
     marginTop: "30%",
+  },
+  errorMsg: {
+    color: "red",
+    fontSize: "10@s",
   },
 });
 

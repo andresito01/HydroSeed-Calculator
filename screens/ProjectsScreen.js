@@ -1,76 +1,29 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  SectionList,
-  FlatList,
-  TextInput,
-} from "react-native";
+import React, { useRef } from "react";
+import { Text, View, SafeAreaView, FlatList } from "react-native";
 import { styles } from "../styles/styles";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { Alert } from "react-native";
-import { render } from "react-dom";
-import {
-  displayProjectDetails,
-  deleteProject,
-} from "../components/SavedProjectListMethods";
-import DisplayProjectModal from "../components/DisplayProjectModal";
-const ProjectScreen = ({
-  projectList,
-  setProjectList,
-  inputs,
-  setInputs,
-  outputs,
-}) => {
-  const [showDisplayModal, setShowDisplayModal] = useState(false);
+import { ListItem } from "../components/ListItem";
+import { Transition, Transitioning } from "react-native-reanimated";
+const ProjectScreen = ({ projectList, setProjectList }) => {
+  const transitionRef = useRef();
+  const transition = <Transition.Change interpolation="easeInOut" />;
 
-  const Item = ({ id, projectID, projectName, projectDate }) => {
-    const ProjectDetails = () => {
-      /*  const project = projectList.find((proj) => {
-        return proj.id === id;
-      }); */
-      setShowDisplayModal(true);
-
-      /* Alert.alert(
-        `${project.projectName} Details`,
-        `ID: ${project.projectID}`,
-        `Date Created: ${project.projectDate}`,
-        `Date Created: ${project.projectDate}`
-      ); */
-    };
-    return (
-      <TouchableOpacity
-        onPress={() => ProjectDetails()}
-        onLongPress={() => deleteProject(id, projectList, setProjectList)}
-        style={styles.listItem}
-      >
-        <Text style={styles.listDate}>{projectDate}</Text>
-        <Text style={styles.listName}>{projectName}</Text>
-        <Text style={styles.listID}>{projectID}</Text>
-      </TouchableOpacity>
-    );
+  const onPress = () => {
+    transitionRef.current.animateNextTransition();
   };
 
   const renderItem = ({ item }) => (
-    <Item
+    <ListItem
+      item={item}
+      onPress={onPress}
       id={item.id}
-      projectID={item.projectID}
-      projectName={item.projectName}
-      projectDate={item.projectDate}
+      projectList={projectList}
+      setProjectList={setProjectList}
     />
   );
 
   //console.log(projectList); * This flatlist is rerendering on every interaction throughout the app which is very bad for performance
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        marginRight: 5,
-        marginLeft: 5,
-      }}
-    >
+    <SafeAreaView style={styles.container2}>
       <View style={styles.projectScreenHeader}>
         <Text style={styles.headerLabel}>Saved Projects</Text>
       </View>
@@ -79,25 +32,25 @@ const ProjectScreen = ({
         <Text style={styles.listNameLabel}>Project Name:</Text>
         <Text style={styles.listIDLabel}>Project ID:</Text>
       </View>
-      <DisplayProjectModal
-        id={(item) => item.id}
-        showDisplayModal={showDisplayModal}
-        setShowDisplayModal={setShowDisplayModal}
-        projectList={projectList}
-      />
-      <FlatList
-        data={projectList}
-        ListEmptyComponent={() => {
-          return (
-            <Text style={styles.noSavedProjectsLabel}>
-              CURRENTLY NO SAVED PROJECTS
-            </Text>
-          );
-        }}
-        //extraData={projectList}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-      />
+      <Transitioning.View
+        ref={transitionRef}
+        transition={transition}
+        style={{ flex: 1 }}
+      >
+        <FlatList
+          style={{ paddingBottom: 0 }}
+          data={projectList}
+          ListEmptyComponent={() => {
+            return (
+              <Text style={styles.noSavedProjectsLabel}>
+                CURRENTLY NO SAVED PROJECTS
+              </Text>
+            );
+          }}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      </Transitioning.View>
     </SafeAreaView>
   );
 };

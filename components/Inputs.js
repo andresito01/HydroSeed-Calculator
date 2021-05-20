@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { styles } from "../styles/styles";
 import { Text, View, TextInput } from "react-native";
 import Buttons from "./Buttons";
@@ -100,7 +100,7 @@ const Inputs = ({
         {/* Input Mulch Mixing Rate */}
         <View style={styles.forms}>
           <Text style={styles.label}>Mulch Mixing Rate:</Text>
-          <View style={styles.inForm2}>
+          <View style={styles.inForm}>
             <TextInput
               name="mulchMixingRate"
               keyboardAppearance="dark"

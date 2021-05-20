@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { styles } from "../styles/styles";
 import {
   Text,
@@ -42,11 +42,11 @@ const CalculatorScreen = ({
           </View>
         </View>
         <SaveProjectModal
+          showSaveModal={showSaveModal}
+          setShowSaveModal={setShowSaveModal}
           inputs={inputs}
           setInputs={setInputs}
           outputs={outputs}
-          showSaveModal={showSaveModal}
-          setShowSaveModal={setShowSaveModal}
           projectList={projectList}
           setProjectList={setProjectList}
         />
