@@ -24,56 +24,47 @@ const Buttons = ({
     var acre = 43560;
     var newLbsOfMulch;
     if (unit === "sq. ft") {
-      newLbsOfMulch = Math.ceil(
-        (Number(inputs.projectSize) / acre) * Number(inputs.mulchAppRate)
-      );
+      newLbsOfMulch =
+        (Number(inputs.projectSize) / acre) * Number(inputs.mulchAppRate);
     } else if (unit === "acre") {
-      newLbsOfMulch = Math.ceil(
-        Number(inputs.projectSize) * Number(inputs.mulchAppRate)
-      );
+      newLbsOfMulch = Number(inputs.projectSize) * Number(inputs.mulchAppRate);
     }
 
     console.log("newLbsOfMulch: " + newLbsOfMulch);
 
-    var newBagsOfMulch = Math.ceil(
-      newLbsOfMulch / Number(inputs.weightOfMulch)
-    );
+    var newBagsOfMulch = newLbsOfMulch / Number(inputs.weightOfMulch);
     console.log("newBagsOfMulch: " + newBagsOfMulch);
 
-    var newBagsPerTank = Math.ceil(Number(inputs.tankCapacity) / 100);
+    var newBagsPerTank = Number(inputs.tankCapacity) / 100;
     console.log("newBagsPerTank: " + newBagsPerTank);
 
-    var newTankLoads = Math.ceil(newBagsOfMulch / newBagsPerTank);
+    var newTankLoads = newBagsOfMulch / newBagsPerTank;
     console.log("newTankLoads: " + newTankLoads);
 
-    var newGallonsOfWater = Math.ceil(
-      ((100 / inputs.mulchMixingRate) * newLbsOfMulch) / 8.34
-    );
-
+    var newGallonsOfWater =
+      ((100 / inputs.mulchMixingRate) * newLbsOfMulch) / 8.34;
     //var newSqFtPerTank = ;
 
     var newCubicYardsOfCompost;
     if (unit === "sq. ft") {
-      newCubicYardsOfCompost = Math.ceil(
-        (inputs.compostAppArea * (inputs.compostDepth / 12)) / 27
-      );
+      newCubicYardsOfCompost =
+        (inputs.compostAppArea * (inputs.compostDepth / 12)) / 27;
     } else if (unit === "acre") {
-      newCubicYardsOfCompost = Math.ceil(
-        (inputs.compostAppArea * acre * (inputs.compostDepth / 12)) / 27
-      );
+      newCubicYardsOfCompost =
+        (inputs.compostAppArea * acre * (inputs.compostDepth / 12)) / 27;
     }
 
-    //var newCubicFtBagsCompost = ;
+    var newCubicFtBagsCompost = newCubicYardsOfCompost * 27;
 
     const newOutputs = { ...outputs };
-    newOutputs.lbsOfMulch = String(newLbsOfMulch);
-    newOutputs.bagsOfMulch = String(newBagsOfMulch);
-    newOutputs.bagsPerTank = String(newBagsPerTank);
-    newOutputs.tankLoads = String(newTankLoads);
-    newOutputs.gallonsOfWater = String(newGallonsOfWater);
-    //newOutputs.sqftPerTank = String(newSqFtPerTank);
-    newOutputs.cubicYardsOfCompost = String(newCubicYardsOfCompost);
-    //newOutputs.cubicFtBagsCompost = String(newCubicFtBagsCompost);
+    newOutputs.lbsOfMulch = String(Math.ceil(newLbsOfMulch));
+    newOutputs.bagsOfMulch = String(Math.ceil(newBagsOfMulch));
+    newOutputs.bagsPerTank = String(Math.ceil(newBagsPerTank));
+    newOutputs.tankLoads = String(Math.ceil(newTankLoads));
+    newOutputs.gallonsOfWater = String(Math.ceil(newGallonsOfWater));
+    /*  newOutputs.sqftPerTank = String(newSqFtPerTank); */
+    newOutputs.cubicYardsOfCompost = String(Math.ceil(newCubicYardsOfCompost));
+    newOutputs.cubicFtBagsCompost = String(Math.ceil(newCubicFtBagsCompost));
     setOutputs(newOutputs);
   };
 
@@ -86,7 +77,7 @@ const Buttons = ({
     console.log("gallonsOfWater: " + outputs.gallonsOfWater);
     //console.log("sqftPerTank: " + outputs.sqftPerTank);
     console.log("cubicYardsOfCompost: " + outputs.cubicYardsOfCompost);
-    //console.log("cubicFtBagsCompost: " + outputs.cubicFtBagsCompost);
+    console.log("cubicFtBagsCompost: " + outputs.cubicFtBagsCompost);
   }, [outputs]);
 
   return (

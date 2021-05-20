@@ -26,15 +26,15 @@ const Outputs = ({ outputs }) => {
         <Text style={styles.textOutputContainer}>
           {outputs.gallonsOfWater} gallons of water
         </Text>
-        <Text style={styles.textOutputContainer}>
+        {/* <Text style={styles.textOutputContainer}>
           {outputs.sqftPerTank} sq. ft./tank{" "}
-        </Text>
+        </Text> */}
       </View>
 
       <View style={{ flexDirection: "column" }}>
         <Text style={styles.label}>Total Compost Needed for Project</Text>
         <Text style={styles.textOutputContainer}>
-          {outputs.cubicYardsOfCompost} cubic yards of compost
+          {outputs.cubicYardsOfCompost} cubic yards of compost or
         </Text>
         <Text style={styles.textOutputContainer}>
           {outputs.cubicFtBagsCompost} cubic foot bags

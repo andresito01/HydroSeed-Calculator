@@ -51,9 +51,9 @@ export const ListItem = ({
             <Text style={styles.textOutputContainer2}>
               {item.gallonsOfWater} gallons of water
             </Text>
-            <Text style={styles.textOutputContainer2}>
+            {/* <Text style={styles.textOutputContainer2}>
               {item.sqftPerTank} sq. ft./tank
-            </Text>
+            </Text> */}
           </View>
           <Text style={styles.label}>Total Compost Needed for Project</Text>
           <View style={{ flexDirection: "column" }}>

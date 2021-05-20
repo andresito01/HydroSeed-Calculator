@@ -39,7 +39,7 @@ const SaveProjectModal = ({
     "11",
     "12",
   ];
-
+  /*
   const checkIfInput = (name, id) => {
     // Check if Project Name and ID contains any user input if not return false
     if (!name) {
@@ -57,47 +57,84 @@ const SaveProjectModal = ({
     return true;
   };
 
-  const checkNameCharLength = (name) => {
+  const checkNameCharLength = (name, error) => {
     // Check if user input has the valid amount of characters for a Project Name
     let projectNameLength = name.length;
     if (projectNameLength > 24) {
-      setProjectNameError("Name cannot surpass 24 characters");
-      return false;
+      error = "Name cannot surpass 24 characters";
     }
-
-    // return true if no error
-    return true;
   };
 
   const checkIdFirstTwoDigits = (id) => {
     // Check if user input has the valid input being first two characters in the Project ID must contain any district number from the districtNums array
-    length = districtNums.length;
+    let length = districtNums.length;
     while (length--) {
-      if (projectID.substring(0, 1) === districtNums[length]) {
-        return true;
+      if (id.substring(0, 1) === districtNums[length]) {
+        break;
+      } else {
+        errors = "Project ID's first two digits must contain a district number";
       }
     }
     setProjectIDError(
       "Project ID's first two digits must contain a district number"
     );
+    return false;
   };
-
+  */
   let validate = () => {
     let projectName = inputs.projectName;
     let projectID = inputs.projectID;
+    let projectNameErrors = "";
+    let projectIDErrors = "";
     setProjectNameError("");
     setProjectIDError("");
     // check if any errors occur, if they do return false
-    if (
+    let projectNameLength = projectName;
+    if (projectNameLength.length > 24) {
+      projectNameErrors = "Name cannot surpass 24 characters";
+    }
+
+    let length = districtNums.length;
+    let count = 0;
+    while (length--) {
+      if (projectID.substring(0, 2) === districtNums[length]) {
+        count++;
+      } else {
+        projectIDErrors =
+          "Project ID's first two digits must contain a district number";
+      }
+    }
+
+    if (count > 0) {
+      projectIDErrors = "";
+    }
+
+    if (!projectName) {
+      projectNameErrors = "Field is required";
+    }
+    if (!projectID) {
+      projectIDErrors = "Field is required";
+    }
+
+    if (projectNameErrors || projectIDErrors) {
+      setProjectNameError(projectNameErrors);
+      setProjectIDError(projectIDErrors);
+      return false;
+    }
+
+    return true;
+  };
+
+  /*  if (
       !checkIfInput(projectName, projectID) ||
-      !checkNameCharLength(projectName)
+      !checkNameCharLength(projectName) ||
+      !checkIdFirstTwoDigits(projectID)
     ) {
       return false;
     }
 
     // return true if there are no errors in user input
-    return true;
-  };
+    return true; */
 
   return (
     <Modal

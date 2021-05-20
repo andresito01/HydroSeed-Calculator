@@ -37,7 +37,7 @@ const CalculatorScreen = ({
           <Text style={styles.headerLabel}>HYDROSEED CALCULATOR</Text>
           <View style={styles.appDescriptionContainer}>
             <Text style={styles.label}>
-              Cal Trans Sponsored Hydroseed Calculator
+              * If not an integer, calculated values are rounded up an integer *
             </Text>
           </View>
         </View>
